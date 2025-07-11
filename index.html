@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 12 DBMS Mastery | Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo i {
+            color: var(--accent);
+        }
+        
+        /* Navigation menu - top left */
+        .nav-menu {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .menu-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        
+        .menu-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .menu-btn i {
+            font-size: 1.5rem;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: white;
+            min-width: 280px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+            overflow: hidden;
+            top: 100%;
+            left: 0;
+            margin-top: 5px;
+        }
+        
+        .dropdown-content a {
+            color: var(--dark);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: var(--transition);
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #f1f5f9;
+            padding-left: 20px;
+        }
+        
+        .dropdown-content a i {
+            color: var(--accent);
+            width: 20px;
+            text-align: center;
+        }
+        
+        .nav-menu:hover .dropdown-content {
+            display: block;
+        }
+        
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .search-bar {
+            display: flex;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 0.4rem 1rem;
+        }
+        
+        .search-bar input {
+            background: transparent;
+            border: none;
+            color: white;
+            outline: none;
+            width: 200px;
+        }
+        
+        .search-bar input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .search-bar button {
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cta-button:hover {
+            background: #db2777;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            flex: 1;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        /* Syllabus Table */
+        .practical-topics {
+            background: white;
+            border-radius: 10px;
+            padding: 2.5rem;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 3rem;
+        }
+        
+        .practical-topics h2 {
+            font-size: 2rem;
+            color: var(--primary-dark);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .practical-topics h2 i {
+            color: var(--accent);
+        }
+        
+        .practical-topics p {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+        }
+        
+        .practical-table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .practical-table th {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .practical-table td {
+            padding: 0.9rem;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .practical-table tbody tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        
+        .practical-table tbody tr:hover {
+            background-color: #f1f5f9;
+        }
+        
+        .practical-table tfoot {
+            font-weight: bold;
+        }
+        
+        .practical-table tfoot td {
+            background-color: #e0f2fe;
+            border-top: 2px solid var(--primary);
+            font-size: 1.1rem;
+        }
+        
+        /* Chapters Grid */
+        .chapters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .chapter-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            color: var(--dark);
+        }
+        
+        .chapter-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .chapter-icon {
+            height: 160px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3.5rem;
+            color: white;
+        }
+        
+        .chapter-content {
+            padding: 1.5rem;
+        }
+        
+        .chapter-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+        
+        .chapter-content p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        .chapter-link {
+            display: inline-block;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .chapter-link:hover {
+            color: var(--accent);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 2rem 2rem;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-column a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 3rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .container {
+                padding: 0 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .nav-right {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .search-bar {
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+            
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .practical-topics {
+                padding: 1.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .chapters-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="nav-menu">
+            <button class="menu-btn">
+                <i class="fas fa-bars"></i>
+                <span>Chapters</span>
+            </button>
+            <div class="dropdown-content">
+                <a href="#" class="active"><i class="fas fa-home"></i> Home</a>
+                <a href="chapter1.html"><i class="fas fa-database"></i> DBMS Fundamentals</a>
+                <a href="chapter2.html"><i class="fas fa-network-wired"></i> Data Communication</a>
+                <a href="chapter3.html"><i class="fas fa-globe"></i> Web Technology II</a>
+                <a href="chapter4.html"><i class="fas fa-code"></i> C Programming II</a>
+                <a href="chapter5.html"><i class="fas fa-cube"></i> OOP</a>
+                <a href="chapter6.html"><i class="fas fa-sync-alt"></i> SDLC</a>
+                <a href="chapter7.html"><i class="fas fa-chart-line"></i> Recent Tech Trends</a>
+            </div>
+        </div>
+        
+        <div class="logo">
+            <i class="fas fa-database"></i>
+            <span>Class 12 DBMS</span>
+        </div>
+        
+        <div class="nav-right">
+            <div class="search-bar">
+                <input type="text" placeholder="Search DBMS topics...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Home Page Content -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Class 12 Database Management System</h1>
+            <p>Comprehensive syllabus and resources for NEB Class 12 Computer Science - Practical Topics</p>
+            <a href="#syllabus" class="cta-button">View Syllabus <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="section-title" id="syllabus">
+            <h2>Practical Topics Syllabus</h2>
+        </div>
+        
+        <div class="practical-topics">
+            <h2><i class="fas fa-tasks"></i> Class 12 Syllabus Overview</h2>
+            <p>Complete syllabus covering all practical topics for Class 12 Computer Science with content marks and working hours.</p>
+            
+            <div class="table-container">
+                <table class="practical-table">
+                    <thead>
+                        <tr>
+                            <th>S.N.</th>
+                            <th>Topic</th>
+                            <th>Content wise marks</th>
+                            <th>Working hours</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Database management system</td>
+                            <td>8</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Data communication and networking</td>
+                            <td>9</td>
+                            <td>15</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Web Tech – II</td>
+                            <td>8</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>C Programming II</td>
+                            <td>8</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Object oriented programming</td>
+                            <td>6</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Software development life cycle</td>
+                            <td>6</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Recent Trends in technology</td>
+                            <td>5</td>
+                            <td>9</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2">Total</td>
+                            <td>50</td>
+                            <td>80</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        
+        <div class="section-title">
+            <h2>Class 12 Chapters</h2>
+        </div>
+        
+        <div class="chapters-grid">
+            <a href="chapter1.html" class="chapter-card">
+                <div class="chapter-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <div class="chapter-content">
+                    <h3>DBMS Fundamentals</h3>
+                    <p>Learn core database concepts, relational models, and SQL fundamentals.</p>
+                    <span class="chapter-link">Explore Chapter <i class="fas fa-chevron-right"></i></span>
+                </div>
+            </a>
+            
+            <a href="chapter2.html" class="chapter-card">
+                <div class="chapter-icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <div class="chapter-content">
+                    <h3>Data Communication</h3>
+                    <p>Understand networking protocols, topologies, and communication models.</p>
+                    <span class="chapter-link">Explore Chapter <i class="fas fa-chevron-right"></i></span>
+                </div>
+            </a>
+            
+            <a href="chapter3.html" class="chapter-card">
+                <div class="chapter-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <div class="chapter-content">
+                    <h3>Web Technology II</h3>
+                    <p>Advanced web development concepts including server-side programming.</p>
+                    <span class="chapter-link">Explore Chapter <i class="fas fa-chevron-right"></i></span>
+                </div>
+            </a>
+            
+            <a href="chapter4.html" class="chapter-card">
+                <div class="chapter-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="chapter-content">
+                    <h3>C Programming II</h3>
+                    <p>Advanced C programming concepts including data structures.</p>
+                    <span class="chapter-link">Explore Chapter <i class="fas fa-chevron-right"></i></span>
+                </div>
+            </a>
+            
+            <a href="chapter5.html" class="chapter-card">
+                <div class="chapter-icon">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <div class="chapter-content">
+                    <h3>Object Oriented Programming</h3>
+                    <p>Principles of OOP including classes, objects, and inheritance.</p>
+                    <span class="chapter-link">Explore Chapter <i class="fas fa-chevron-right"></i></span>
+                </div>
+            </a>
+            
+            <a href="chapter6.html" class="chapter-card">
+                <div class="chapter-icon">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <div class="chapter-content">
+                    <h3>SDLC</h3>
+                    <p>Software development life cycle methodologies and practices.</p>
+                    <span class="chapter-link">Explore Chapter <i class="fas fa-chevron-right"></i></span>
+                </div>
+            </a>
+            
+            <a href="chapter7.html" class="chapter-card">
+                <div class="chapter-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="chapter-content">
+                    <h3>Recent Tech Trends</h3>
+                    <p>Emerging technologies like AI, IoT, cloud computing, and blockchain.</p>
+                    <span class="chapter-link">Explore Chapter <i class="fas fa-chevron-right"></i></span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Class 12 DBMS</h3>
+                <p>Comprehensive resources for NEB Class 12 Computer Science - Database Management System.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Chapters</h3>
+                <ul>
+                    <li><a href="chapter1.html">DBMS Fundamentals</a></li>
+                    <li><a href="chapter2.html">Data Communication</a></li>
+                    <li><a href="chapter3.html">Web Technology II</a></li>
+                    <li><a href="chapter4.html">C Programming II</a></li>
+                    <li><a href="chapter5.html">OOP</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Practical Guides</a></li>
+                    <li><a href="#">Sample Questions</a></li>
+                    <li><a href="#">Reference Materials</a></li>
+                    <li><a href="#">Exam Preparation</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> info@class12dbms.com</li>
+                    <li><i class="fas fa-phone"></i> +977-1-XXXXXXX</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Kathmandu, Nepal</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2023 Class 12 DBMS. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Search functionality
+        document.querySelector('.search-bar button').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-bar input').value.trim();
+            if(searchTerm) {
+                alert(`Searching for: ${searchTerm}`);
+            } else {
+                alert('Please enter a search term');
+            }
+        });
+        
+        // Chapter card hover effect
+        const chapterCards = document.querySelectorAll('.chapter-card');
+        chapterCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
