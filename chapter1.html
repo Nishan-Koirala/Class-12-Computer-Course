@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 1: DBMS Fundamentals | Class 12 DBMS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header with Navigation */
+        header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo i {
+            color: var(--accent);
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        
+        .search-bar {
+            display: flex;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 0.4rem 1rem;
+        }
+        
+        .search-bar input {
+            background: transparent;
+            border: none;
+            color: white;
+            outline: none;
+            width: 200px;
+        }
+        
+        .search-bar input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .search-bar button {
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            flex: 1;
+        }
+        
+        .chapter-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .chapter-header h1 {
+            font-size: 2.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .chapter-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .chapter-header p {
+            color: var(--gray);
+            max-width: 800px;
+            margin: 2rem auto 0;
+            font-size: 1.2rem;
+        }
+        
+        .content-section {
+            background: white;
+            border-radius: 10px;
+            padding: 2.5rem;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--accent);
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title i {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .section-title h2 {
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+        }
+        
+        .content-section p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: var(--dark);
+        }
+        
+        .content-section ul, .content-section ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .content-section li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .content-section li:before {
+            content: "•";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .definition-box {
+            background: #f1f5f9;
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin: 1.5rem 0;
+        }
+        
+        .definition-box h3 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .definition-box h3 i {
+            color: var(--accent);
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .content-table th {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .content-table td {
+            padding: 0.9rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .content-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        
+        .content-table tr:hover {
+            background-color: #f1f5f9;
+        }
+        
+        .key-points {
+            background: linear-gradient(to right, #e0f2fe, #dbeafe);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .key-points h3 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .key-points ul {
+            padding-left: 1.5rem;
+        }
+        
+        .key-points li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .model-card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .model-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--accent);
+        }
+        
+        .model-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .model-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+        
+        .model-card h3 i {
+            color: var(--accent);
+        }
+        
+        .normalization-steps {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .normalization-step {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .normalization-step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--accent);
+        }
+        
+        .normalization-step h4 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .security-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .security-feature {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .security-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: white;
+            font-size: 1.8rem;
+        }
+        
+        .security-feature h4 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 2rem 2rem;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-column a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 3rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            .content-section {
+                padding: 1.5rem;
+            }
+            
+            .chapter-header h1 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .search-bar {
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.5rem;
+            }
+            
+            .normalization-steps {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .chapter-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title i {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-database"></i>
+            <span>Class 12 DBMS</span>
+        </div>
+        
+        <div class="nav-menu">
+            <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+            <a href="#" class="nav-link active"><i class="fas fa-book"></i> Chapter 1</a>
+            <a href="#" class="nav-link"><i class="fas fa-book"></i> Chapter 2</a>
+            <a href="#" class="nav-link"><i class="fas fa-book"></i> Chapter 3</a>
+            <a href="#" class="nav-link"><i class="fas fa-book"></i> Chapter 4</a>
+        </div>
+        
+        <div class="search-bar">
+            <input type="text" placeholder="Search DBMS topics...">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="chapter-header">
+            <h1><i class="fas fa-database"></i> DBMS Fundamentals</h1>
+            <p>Comprehensive guide to Database Management Systems covering core concepts, models, and principles for Class 12 Computer Science students.</p>
+        </div>
+        
+        <!-- Data & Information -->
+        <div class="content-section">
+            <div class="section-title">
+                <i class="fas fa-info-circle"></i>
+                <h2>Data & Information</h2>
+            </div>
+            
+            <p>Understanding the distinction between data and information is fundamental to database management. Data refers to raw, unorganized facts and figures, while information is data that has been processed, organized, and structured to provide meaning and context.</p>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-database"></i> Data</h3>
+                <p>Raw facts and figures without any inherent meaning. Examples include numbers, text, images, and symbols that haven't been processed or interpreted.</p>
+            </div>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-chart-line"></i> Information</h3>
+                <p>Data that has been processed, organized, and structured to become meaningful and useful for decision-making. Information provides context and enables knowledge.</p>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-star"></i> Key Features of Valuable Information</h3>
+                <ul>
+                    <li><strong>Accuracy:</strong> Information must be free from errors and precisely represent the real-world scenario it describes.</li>
+                    <li><strong>Relevance:</strong> Information should be pertinent to the specific context and needs of the user.</li>
+                    <li><strong>Completeness:</strong> All necessary data should be included to provide a comprehensive understanding.</li>
+                    <li><strong>Timeliness:</strong> Information must be current and available when needed for decision-making.</li>
+                    <li><strong>Consistency:</strong> Information should be uniform and reliable across different sources and time periods.</li>
+                    <li><strong>Accessibility:</strong> Information should be easily obtainable by authorized users when required.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Database Fundamentals -->
+        <div class="content-section">
+            <div class="section-title">
+                <i class="fas fa-cogs"></i>
+                <h2>Database Fundamentals</h2>
+            </div>
+            
+            <p>A database is an organized collection of structured data stored electronically in a computer system. Databases are designed to efficiently manage large volumes of data while ensuring integrity and security.</p>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-table"></i> Core Concepts</h3>
+                <ul>
+                    <li><strong>Tables:</strong> The primary structure for storing data in a relational database, consisting of rows and columns.</li>
+                    <li><strong>Fields (Columns):</strong> Represent specific attributes or characteristics of the data being stored.</li>
+                    <li><strong>Records (Rows):</strong> Individual entries in a table that contain specific data values for each field.</li>
+                    <li><strong>Tuples:</strong> A technical term for a row or record in a database table.</li>
+                    <li><strong>Objects:</strong> In object-oriented databases, entities that combine data and associated behaviors.</li>
+                    <li><strong>Keys:</strong> Special fields that establish relationships between tables and ensure data integrity.</li>
+                    <li><strong>Data Dictionaries:</strong> Metadata repositories that store information about the database structure.</li>
+                </ul>
+            </div>
+            
+            <div class="table-container">
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Concept</th>
+                            <th>Description</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Primary Key</td>
+                            <td>A unique identifier for each record in a table</td>
+                            <td>Student ID in a Students table</td>
+                        </tr>
+                        <tr>
+                            <td>Foreign Key</td>
+                            <td>A field that links to the primary key in another table</td>
+                            <td>Department ID in an Employees table</td>
+                        </tr>
+                        <tr>
+                            <td>Composite Key</td>
+                            <td>A primary key consisting of multiple columns</td>
+                            <td>OrderID + ProductID in OrderDetails</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DBMS -->
+        <div class="content-section">
+            <div class="section-title">
+                <i class="fas fa-server"></i>
+                <h2>Database Management System (DBMS)</h2>
+            </div>
+            
+            <p>A Database Management System (DBMS) is software that enables users to define, create, maintain, and control access to databases. It serves as an intermediary between users and databases, providing an organized system for data management.</p>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-bullseye"></i> Objectives of DBMS</h3>
+                <ul>
+                    <li>Ensure data integrity and security through validation rules and access controls</li>
+                    <li>Provide efficient data storage and retrieval mechanisms</li>
+                    <li>Minimize data redundancy through normalization</li>
+                    <li>Enable concurrent access by multiple users without conflicts</li>
+                    <li>Implement robust backup and recovery mechanisms</li>
+                    <li>Maintain data independence between applications and physical storage</li>
+                </ul>
+            </div>
+            
+            <div class="model-card-container">
+                <div class="model-card">
+                    <h3><i class="fas fa-thumbs-up"></i> Advantages</h3>
+                    <p>Improved data sharing across departments and applications</p>
+                    <p>Enhanced data security through role-based access control</p>
+                    <p>Reduced data inconsistency with integrity constraints</p>
+                    <p>Better decision making with accurate, timely information</p>
+                    <p>Increased productivity through efficient data access</p>
+                </div>
+                
+                <div class="model-card">
+                    <h3><i class="fas fa-thumbs-down"></i> Disadvantages</h3>
+                    <p>Complexity in setup and ongoing management</p>
+                    <p>High cost of implementation including hardware and licenses</p>
+                    <p>Performance overhead for complex operations</p>
+                    <p>Vulnerability to system failures requiring recovery mechanisms</p>
+                    <p>Requires specialized personnel for administration</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Database Models -->
+        <div class="content-section">
+            <div class="section-title">
+                <i class="fas fa-project-diagram"></i>
+                <h2>Database Models</h2>
+            </div>
+            
+            <p>Database models define the logical structure of a database and determine how data can be stored, organized, and manipulated. Different models serve different requirements and use cases.</p>
+            
+            <div class="model-card-container">
+                <div class="model-card">
+                    <h3><i class="fas fa-sitemap"></i> Hierarchical Model</h3>
+                    <p>Tree-like structure with parent-child relationships. Suitable for one-to-many relationships with strict hierarchies. Used in early mainframe database systems.</p>
+                    <p><strong>Example:</strong> File systems, organization charts</p>
+                </div>
+                
+                <div class="model-card">
+                    <h3><i class="fas fa-network-wired"></i> Network Model</h3>
+                    <p>Complex interconnected records allowing multiple parent-child relationships. More flexible than hierarchical model but complex to manage.</p>
+                    <p><strong>Example:</strong> Complex manufacturing systems</p>
+                </div>
+                
+                <div class="model-card">
+                    <h3><i class="fas fa-table"></i> Relational Model</h3>
+                    <p>Data organized in tables (relations) with rows and columns. Uses keys to define relationships between tables. Most widely used model today.</p>
+                    <p><strong>Example:</strong> SQL databases like MySQL, PostgreSQL</p>
+                </div>
+                
+                <div class="model-card">
+                    <h3><i class="fas fa-shapes"></i> Entity-Relationship Model</h3>
+                    <p>Conceptual representation using entities, attributes, and relationships. Serves as a blueprint for database design before implementation.</p>
+                    <p><strong>Example:</strong> Database design diagrams</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Integrity Constraints -->
+        <div class="content-section">
+            <div class="section-title">
+                <i class="fas fa-shield-alt"></i>
+                <h2>Integrity Constraints</h2>
+            </div>
+            
+            <p>Integrity constraints are rules that ensure the accuracy, consistency, and reliability of data in a database. They prevent invalid data entry and maintain relationships between tables.</p>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-lock"></i> Types of Integrity Constraints</h3>
+                <ul>
+                    <li><strong>Domain Integrity:</strong> Ensures columns contain only valid values (e.g., data types, formats, ranges)</li>
+                    <li><strong>Entity Integrity:</strong> Requires that each table has a primary key that uniquely identifies each row</li>
+                    <li><strong>Referential Integrity:</strong> Ensures foreign keys reference valid primary keys in related tables</li>
+                    <li><strong>User-defined Integrity:</strong> Custom rules specific to business requirements</li>
+                </ul>
+            </div>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-exclamation-circle"></i> Importance of Constraints</h3>
+                <p>Integrity constraints maintain data quality by preventing inconsistencies and anomalies. They enforce business rules at the database level, ensuring that relationships between data elements remain valid even when data is modified. Constraints also improve query performance by enabling the database optimizer to make better decisions.</p>
+            </div>
+        </div>
+        
+        <!-- Normalization -->
+        <div class="content-section">
+            <div class="section-title">
+                <i class="fas fa-filter"></i>
+                <h2>Normalization</h2>
+            </div>
+            
+            <p>Normalization is the process of organizing data in a database to reduce redundancy and improve data integrity. It involves decomposing tables to eliminate undesirable characteristics like insertion, update, and deletion anomalies.</p>
+            
+            <div class="normalization-steps">
+                <div class="normalization-step">
+                    <h4>First Normal Form (1NF)</h4>
+                    <p>Eliminate repeating groups and ensure atomic columns. Each table cell should contain a single value, and each record needs to be unique.</p>
+                    <p><strong>Example:</strong> Separate phone numbers into multiple rows rather than comma-separated values.</p>
+                </div>
+                
+                <div class="normalization-step">
+                    <h4>Second Normal Form (2NF)</h4>
+                    <p>Meet all 1NF requirements and eliminate partial dependencies. All non-key attributes must depend on the entire primary key.</p>
+                    <p><strong>Example:</strong> Move product details to a separate table from orders.</p>
+                </div>
+                
+                <div class="normalization-step">
+                    <h4>Third Normal Form (3NF)</h4>
+                    <p>Meet all 2NF requirements and eliminate transitive dependencies. Non-key attributes must depend only on the primary key.</p>
+                    <p><strong>Example:</strong> Separate department location from employee table.</p>
+                </div>
+            </div>
+            
+            <div class="model-card-container">
+                <div class="model-card">
+                    <h3><i class="fas fa-check-circle"></i> Advantages</h3>
+                    <p>Reduced data redundancy and storage requirements</p>
+                    <p>Improved data integrity and consistency</p>
+                    <p>Simpler queries with well-defined relationships</p>
+                    <p>Easier maintenance and modification of database structure</p>
+                </div>
+                
+                <div class="model-card">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Disadvantages</h3>
+                    <p>More complex database design process</p>
+                    <p>Potential for slower performance due to joins across tables</p>
+                    <p>Harder to understand for beginners</p>
+                    <p>May require more complex application logic</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Database Security -->
+        <div class="content-section">
+            <div class="section-title">
+                <i class="fas fa-lock"></i>
+                <h2>Database Security</h2>
+            </div>
+            
+            <p>Database security encompasses the tools, controls, and measures designed to protect the confidentiality, integrity, and availability of data stored in database systems.</p>
+            
+            <div class="security-features">
+                <div class="security-feature">
+                    <div class="security-icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <h4>Authentication</h4>
+                    <p>Verifying the identity of users before granting access to the database system.</p>
+                </div>
+                
+                <div class="security-feature">
+                    <div class="security-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h4>Authorization</h4>
+                    <p>Determining access rights and privileges for authenticated users.</p>
+                </div>
+                
+                <div class="security-feature">
+                    <div class="security-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h4>Encryption</h4>
+                    <p>Converting data into coded form to prevent unauthorized access.</p>
+                </div>
+                
+                <div class="security-feature">
+                    <div class="security-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h4>Auditing</h4>
+                    <p>Tracking database activities for security analysis and compliance.</p>
+                </div>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-database"></i> Security Best Practices</h3>
+                <ul>
+                    <li>Regularly apply security patches and updates</li>
+                    <li>Implement the principle of least privilege for user access</li>
+                    <li>Encrypt sensitive data both at rest and in transit</li>
+                    <li>Maintain regular backups and test restoration procedures</li>
+                    <li>Use strong password policies and multi-factor authentication</li>
+                    <li>Conduct regular security audits and vulnerability assessments</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Distributed Databases -->
+        <div class="content-section">
+            <div class="section-title">
+                <i class="fas fa-globe"></i>
+                <h2>Distributed Databases</h2>
+            </div>
+            
+            <p>A distributed database is a collection of multiple interconnected databases spread across different physical locations. These databases appear to users as a single database but are actually distributed over a computer network.</p>
+            
+            <div class="model-card-container">
+                <div class="model-card">
+                    <h3><i class="fas fa-check-circle"></i> Advantages</h3>
+                    <p>Improved performance through parallel processing</p>
+                    <p>Increased reliability and fault tolerance</p>
+                    <p>Modular growth allowing incremental expansion</p>
+                    <p>Local autonomy for different departments/locations</p>
+                    <p>Reduced communication costs for geographically dispersed organizations</p>
+                </div>
+                
+                <div class="model-card">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Disadvantages</h3>
+                    <p>Complexity in design, implementation, and management</p>
+                    <p>Increased costs for infrastructure and maintenance</p>
+                    <p>Security challenges across multiple locations</p>
+                    <p>Integrity control issues with distributed transactions</p>
+                    <p>Difficulties in maintaining data consistency</p>
+                </div>
+            </div>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-sync-alt"></i> Distributed Database Architectures</h3>
+                <ul>
+                    <li><strong>Client-Server:</strong> Clients interact with a central server that manages the distributed database</li>
+                    <li><strong>Peer-to-Peer:</strong> All nodes are equal and can act as both clients and servers</li>
+                    <li><strong>Multi-DBMS:</strong> Integrates multiple autonomous databases into a single federated system</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+<!-- Add after the last content-section and before the footer -->
+<div class="content-section">
+    <div class="section-title">
+        <i class="fas fa-question-circle"></i>
+        <h2>DBMS Questions & Answers</h2>
+    </div>
+    
+    <div class="definition-box">
+        <h3><i class="fas fa-database"></i> 1. What is a Database and DBMS?</h3>
+        <p><strong>Database:</strong> An organized collection of structured data stored electronically for efficient access, management, and updates.</p>
+        <p><strong>DBMS (Database Management System):</strong> Software that manages databases (e.g., MySQL, Oracle). It provides tools for defining, creating, querying, updating, and administering databases.</p>
+        
+        <div class="key-points">
+            <h3><i class="fas fa-check-circle"></i> Advantages of DBMS</h3>
+            <ul>
+                <li>Reduced Data Redundancy: Minimizes duplicate data through normalization</li>
+                <li>Improved Data Integrity: Enforces constraints (e.g., unique keys)</li>
+                <li>Enhanced Security: Role-based access control, encryption</li>
+                <li>Data Sharing and Concurrency: Supports simultaneous access</li>
+                <li>Backup and Recovery: Automated tools for data restoration</li>
+                <li>Data Independence: Applications insulated from storage changes</li>
+            </ul>
+            
+            <h3><i class="fas fa-exclamation-triangle"></i> Disadvantages of DBMS</h3>
+            <ul>
+                <li>High Setup Cost: Expensive licensing, hardware, and personnel</li>
+                <li>Complexity: Requires expertise in design and maintenance</li>
+                <li>Performance Overhead: Resource-intensive operations</li>
+                <li>Scalability Limitations: Vertical scaling challenges</li>
+                <li>Single Point of Failure: Centralized databases risk downtime</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="definition-box">
+        <h3><i class="fas fa-file-alt"></i> 2. File Processing System vs DBMS</h3>
+        <div class="table-container">
+            <table class="content-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>File Processing System</th>
+                        <th>DBMS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Data Redundancy</td>
+                        <td>High redundancy (duplicated across files)</td>
+                        <td>Minimal redundancy (centralized data)</td>
+                    </tr>
+                    <tr>
+                        <td>Data Consistency</td>
+                        <td>Low consistency (changes may not propagate)</td>
+                        <td>High consistency (automatic update propagation)</td>
+                    </tr>
+                    <tr>
+                        <td>Data Sharing</td>
+                        <td>Limited sharing (isolated files)</td>
+                        <td>Efficient sharing (concurrent access)</td>
+                    </tr>
+                    <tr>
+                        <td>Security</td>
+                        <td>Weak security (file-level permissions)</td>
+                        <td>Robust security (roles, encryption, access controls)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="definition-box">
+        <h3><i class="fas fa-project-diagram"></i> 3. DBMS Models</h3>
+        <div class="model-card-container">
+            <div class="model-card">
+                <h3><i class="fas fa-sitemap"></i> Hierarchical Model</h3>
+                <p><strong>Structure:</strong> Tree-like (parent-child relationships)</p>
+                <p><strong>Advantages:</strong> Fast access for hierarchical data</p>
+                <p><strong>Disadvantages:</strong> Inflexible; cannot model many-to-many relationships</p>
+            </div>
+            
+            <div class="model-card">
+                <h3><i class="fas fa-network-wired"></i> Network Model</h3>
+                <p><strong>Structure:</strong> Graph-like (multiple parent-child connections)</p>
+                <p><strong>Advantages:</strong> Handles complex relationships</p>
+                <p><strong>Disadvantages:</strong> High complexity in design and queries</p>
+            </div>
+            
+            <div class="model-card">
+                <h3><i class="fas fa-table"></i> Relational Model</h3>
+                <p><strong>Structure:</strong> Tables (rows and columns)</p>
+                <p><strong>Advantages:</strong> Simple design, SQL support, flexible queries</p>
+                <p><strong>Disadvantages:</strong> Performance issues with complex joins</p>
+            </div>
+            
+            <div class="model-card">
+                <h3><i class="fas fa-shapes"></i> Object-Oriented Model</h3>
+                <p><strong>Structure:</strong> Objects (attributes and methods)</p>
+                <p><strong>Advantages:</strong> Suitable for complex data (e.g., multimedia)</p>
+                <p><strong>Disadvantages:</strong> Steep learning curve; limited adoption</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="definition-box">
+        <h3><i class="fas fa-table"></i> 4. Relational Database</h3>
+        <p><strong>Relational Database:</strong> Stores data in tables (relations) with rows (tuples) and columns (attributes). Relationships enforced via keys.</p>
+        
+        <div class="key-points">
+            <h3><i class="fas fa-not-equal"></i> Differences from Other Models</h3>
+            <ul>
+                <li>vs. Hierarchical/Network: Uses logical links (keys) instead of physical pointers</li>
+                <li>vs. Object-Oriented: Avoids complex inheritance; relies on tables</li>
+                <li>vs. NoSQL: Requires fixed schema; strict ACID compliance</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="definition-box">
+        <h3><i class="fas fa-copy"></i> 5. Data Redundancy</h3>
+        <p><strong>Data Redundancy:</strong> Unnecessary duplication of data (e.g., storing same address in multiple files).</p>
+        
+        <div class="key-points">
+            <h3><i class="fas fa-database"></i> How DBMS Reduces Redundancy</h3>
+            <ul>
+                <li>Normalization: Splits tables to store data once</li>
+                <li>Foreign Keys: References unique IDs instead of repeating data</li>
+                <li>Centralized Storage: Single source of truth for critical data</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="definition-box">
+        <h3><i class="fas fa-server"></i> 6. Centralized vs Distributed Databases</h3>
+        <div class="table-container">
+            <table class="content-table">
+                <thead>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Centralized</th>
+                        <th>Distributed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Data Location</td>
+                        <td>Single server/location</td>
+                        <td>Multiple servers across locations</td>
+                    </tr>
+                    <tr>
+                        <td>Fault Tolerance</td>
+                        <td>Low (single point of failure)</td>
+                        <td>High (data replicated across nodes)</td>
+                    </tr>
+                    <tr>
+                        <td>Performance</td>
+                        <td>Faster for small-scale operations</td>
+                        <td>Optimized for large-scale distributed access</td>
+                    </tr>
+                    <tr>
+                        <td>Complexity</td>
+                        <td>Easier to manage</td>
+                        <td>Complex coordination required</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="definition-box">
+        <h3><i class="fas fa-user-tie"></i> 7. Database Administrator (DBA)</h3>
+        <p><strong>DBA:</strong> Specialist responsible for managing and maintaining database systems.</p>
+        
+        <div class="key-points">
+            <h3><i class="fas fa-tasks"></i> Responsibilities</h3>
+            <ul>
+                <li>Designing and implementing database structures</li>
+                <li>Ensuring security (access controls, encryption)</li>
+                <li>Monitoring performance and optimizing queries</li>
+                <li>Backup, recovery, and disaster planning</li>
+                <li>Enforcing data integrity and compliance standards</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="definition-box">
+        <h3><i class="fas fa-filter"></i> 8. Normalization: 1NF, 2NF, and 3NF</h3>
+        <p><strong>Normalization:</strong> Process of organizing data to minimize redundancy.</p>
+        
+        <div class="normalization-steps">
+            <div class="normalization-step">
+                <h4>1NF (First Normal Form)</h4>
+                <p><strong>Rule:</strong> Atomic values; no repeating groups</p>
+                <p><strong>Example:</strong> Convert Students (ID, Name, [Subject1, Subject2]) to Students (ID, Name, Subject)</p>
+            </div>
+            
+            <div class="normalization-step">
+                <h4>2NF (Second Normal Form)</h4>
+                <p><strong>Rule:</strong> 1NF + no partial dependencies</p>
+                <p><strong>Example:</strong> Split Orders (OrderID, ProductID, ProductName, Price) into Orders (OrderID, ProductID) and Products (ProductID, ProductName, Price)</p>
+            </div>
+            
+            <div class="normalization-step">
+                <h4>3NF (Third Normal Form)</h4>
+                <p><strong>Rule:</strong> 2NF + no transitive dependencies</p>
+                <p><strong>Example:</strong> Split Employees (EmpID, Name, Dept, DeptLocation) into Employees (EmpID, Name, Dept) and Departments (Dept, DeptLocation)</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="definition-box">
+        <h3><i class="fas fa-key"></i> 9. Keys in Databases</h3>
+        <div class="model-card-container">
+            <div class="model-card">
+                <h3><i class="fas fa-key"></i> Primary Key</h3>
+                <p>Unique identifier for a table (e.g., StudentID in Students)</p>
+            </div>
+            
+            <div class="model-card">
+                <h3><i class="fas fa-key"></i> Foreign Key</h3>
+                <p>Attribute linking to another table's primary key (e.g., DeptID in Employees referencing Departments)</p>
+            </div>
+            
+            <div class="model-card">
+                <h3><i class="fas fa-key"></i> Candidate Key</h3>
+                <p>Column(s) eligible to be a primary key (e.g., Email or SSN in Users)</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="definition-box">
+        <h3><i class="fas fa-code"></i> 10. SQL Components and Functions</h3>
+        <p><strong>SQL (Structured Query Language):</strong> Standard language for managing relational databases.</p>
+        
+        <div class="key-points">
+            <h3><i class="fas fa-cogs"></i> SQL Components</h3>
+            <ul>
+                <li>DDL (Data Definition Language): CREATE, ALTER, DROP</li>
+                <li>DML (Data Manipulation Language): SELECT, INSERT, UPDATE, DELETE</li>
+                <li>DCL (Data Control Language): GRANT, REVOKE</li>
+                <li>TCL (Transaction Control Language): COMMIT, ROLLBACK</li>
+            </ul>
+        </div>
+        
+        <div class="key-points">
+            <h3><i class="fas fa-functions"></i> Common SQL Functions</h3>
+            <ul>
+                <li><strong>Aggregate:</strong> SUM(), COUNT(), AVG()</li>
+                <li><strong>String:</strong> CONCAT(), SUBSTRING()</li>
+                <li><strong>Date:</strong> CURRENT_DATE(), DATEDIFF()</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="definition-box">
+        <h3><i class="fas fa-terminal"></i> 11. SQL Commands</h3>
+        <pre><code class="sql">-- a. Create table
+CREATE TABLE students (
+  Id INT PRIMARY KEY,
+  Name VARCHAR(50) NOT NULL,
+  Class CHAR(3),
+  Marks INT CHECK (Marks >= 0)
+);
+
+-- b. Insert records
+INSERT INTO students (Id, Name, Class, Marks) 
+VALUES 
+  (1, 'Raj', '10A', 92),
+  (2, 'Anita', '9B', 78);
+
+-- c. Display all records
+SELECT * FROM students;
+
+-- d. Update marks
+UPDATE students 
+SET Marks = 85 
+WHERE Name = 'Anita';
+
+-- e. Delete a record
+DELETE FROM students 
+WHERE Id = 3;</code></pre>
+    </div>
+    
+    <div class="definition-box">
+        <h3><i class="fas fa-book"></i> 12. Key Definitions</h3>
+        <div class="key-points">
+            <ul>
+                <li><strong>Data Dictionary:</strong> Metadata repository storing database schema details</li>
+                <li><strong>Primary Key:</strong> Unique identifier for a table record (e.g., ISBN in Books)</li>
+                <li><strong>Relationship:</strong> Association between tables (e.g., one-to-many between Authors and Books)</li>
+                <li><strong>DML (Data Manipulation Language):</strong> Commands for data operations (INSERT, SELECT, etc.)</li>
+                <li><strong>Data Integrity:</strong> Accuracy and consistency of data via constraints</li>
+            </ul>
+        </div>
+    </div>
+</div>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Class 12 DBMS</h3>
+                <p>Comprehensive resources for NEB Class 12 Computer Science - Database Management System.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Chapters</h3>
+                <ul>
+                    <li><a href="#">DBMS Fundamentals</a></li>
+                    <li><a href="#">Data Communication</a></li>
+                    <li><a href="#">Web Technology II</a></li>
+                    <li><a href="#">C Programming II</a></li>
+                    <li><a href="#">OOP</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Practical Guides</a></li>
+                    <li><a href="#">Sample Questions</a></li>
+                    <li><a href="#">Reference Materials</a></li>
+                    <li><a href="#">Exam Preparation</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> info@class12dbms.com</li>
+                    <li><i class="fas fa-phone"></i> +977-1-XXXXXXX</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Kathmandu, Nepal</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2023 Class 12 DBMS. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Search functionality
+        document.querySelector('.search-bar button').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-bar input').value.trim();
+            if(searchTerm) {
+                alert(`Searching for: ${searchTerm}`);
+            } else {
+                alert('Please enter a search term');
+            }
+        });
+        
+        // Highlight current section in navigation
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Animation for cards on scroll
+        const cards = document.querySelectorAll('.model-card, .normalization-step, .security-feature');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        cards.forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
