@@ -536,6 +536,86 @@
                 font-size: 1.2rem;
             }
         }
+    .question-container {
+            background: #f1f5f9;
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin: 1.5rem 0;
+        }
+        
+        .question-container h3 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .question-container h3 i {
+            color: var(--accent);
+        }
+        
+        .qa-table-container {
+            overflow-x: auto;
+            margin: 1rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .qa-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .qa-table th {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.8rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qa-table td {
+            padding: 0.8rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .qa-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        
+        .qa-table tr:hover {
+            background-color: #f1f5f9;
+        }
+        
+        .sql-code {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            margin: 1.5rem 0;
+            line-height: 1.5;
+        }
+        
+        .sql-keyword {
+            color: #f92672;
+        }
+        
+        .sql-function {
+            color: #66d9ef;
+        }
+        
+        .sql-string {
+            color: #a6e22e;
+        }
+        
+        .sql-comment {
+            color: #75715e;
+        }
     </style>
 </head>
 <body>
@@ -895,303 +975,318 @@
                 </ul>
             </div>
         </div>
-    </div>
-<!-- Add after the last content-section and before the footer -->
-<div class="content-section">
-    <div class="section-title">
-        <i class="fas fa-question-circle"></i>
-        <h2>DBMS Questions & Answers</h2>
-    </div>
-    
-    <div class="definition-box">
-        <h3><i class="fas fa-database"></i> 1. What is a Database and DBMS?</h3>
-        <p><strong>Database:</strong> An organized collection of structured data stored electronically for efficient access, management, and updates.</p>
-        <p><strong>DBMS (Database Management System):</strong> Software that manages databases (e.g., MySQL, Oracle). It provides tools for defining, creating, querying, updating, and administering databases.</p>
-        
-        <div class="key-points">
-            <h3><i class="fas fa-check-circle"></i> Advantages of DBMS</h3>
-            <ul>
-                <li>Reduced Data Redundancy: Minimizes duplicate data through normalization</li>
-                <li>Improved Data Integrity: Enforces constraints (e.g., unique keys)</li>
-                <li>Enhanced Security: Role-based access control, encryption</li>
-                <li>Data Sharing and Concurrency: Supports simultaneous access</li>
-                <li>Backup and Recovery: Automated tools for data restoration</li>
-                <li>Data Independence: Applications insulated from storage changes</li>
-            </ul>
-            
-            <h3><i class="fas fa-exclamation-triangle"></i> Disadvantages of DBMS</h3>
-            <ul>
-                <li>High Setup Cost: Expensive licensing, hardware, and personnel</li>
-                <li>Complexity: Requires expertise in design and maintenance</li>
-                <li>Performance Overhead: Resource-intensive operations</li>
-                <li>Scalability Limitations: Vertical scaling challenges</li>
-                <li>Single Point of Failure: Centralized databases risk downtime</li>
-            </ul>
-        </div>
-    </div>
-    
-    <div class="definition-box">
-        <h3><i class="fas fa-file-alt"></i> 2. File Processing System vs DBMS</h3>
-        <div class="table-container">
-            <table class="content-table">
-                <thead>
-                    <tr>
-                        <th>Feature</th>
-                        <th>File Processing System</th>
-                        <th>DBMS</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Data Redundancy</td>
-                        <td>High redundancy (duplicated across files)</td>
-                        <td>Minimal redundancy (centralized data)</td>
-                    </tr>
-                    <tr>
-                        <td>Data Consistency</td>
-                        <td>Low consistency (changes may not propagate)</td>
-                        <td>High consistency (automatic update propagation)</td>
-                    </tr>
-                    <tr>
-                        <td>Data Sharing</td>
-                        <td>Limited sharing (isolated files)</td>
-                        <td>Efficient sharing (concurrent access)</td>
-                    </tr>
-                    <tr>
-                        <td>Security</td>
-                        <td>Weak security (file-level permissions)</td>
-                        <td>Robust security (roles, encryption, access controls)</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    
-    <div class="definition-box">
-        <h3><i class="fas fa-project-diagram"></i> 3. DBMS Models</h3>
-        <div class="model-card-container">
-            <div class="model-card">
-                <h3><i class="fas fa-sitemap"></i> Hierarchical Model</h3>
-                <p><strong>Structure:</strong> Tree-like (parent-child relationships)</p>
-                <p><strong>Advantages:</strong> Fast access for hierarchical data</p>
-                <p><strong>Disadvantages:</strong> Inflexible; cannot model many-to-many relationships</p>
-            </div>
-            
-            <div class="model-card">
-                <h3><i class="fas fa-network-wired"></i> Network Model</h3>
-                <p><strong>Structure:</strong> Graph-like (multiple parent-child connections)</p>
-                <p><strong>Advantages:</strong> Handles complex relationships</p>
-                <p><strong>Disadvantages:</strong> High complexity in design and queries</p>
-            </div>
-            
-            <div class="model-card">
-                <h3><i class="fas fa-table"></i> Relational Model</h3>
-                <p><strong>Structure:</strong> Tables (rows and columns)</p>
-                <p><strong>Advantages:</strong> Simple design, SQL support, flexible queries</p>
-                <p><strong>Disadvantages:</strong> Performance issues with complex joins</p>
-            </div>
-            
-            <div class="model-card">
-                <h3><i class="fas fa-shapes"></i> Object-Oriented Model</h3>
-                <p><strong>Structure:</strong> Objects (attributes and methods)</p>
-                <p><strong>Advantages:</strong> Suitable for complex data (e.g., multimedia)</p>
-                <p><strong>Disadvantages:</strong> Steep learning curve; limited adoption</p>
-            </div>
-        </div>
-    </div>
-    
-    <div class="definition-box">
-        <h3><i class="fas fa-table"></i> 4. Relational Database</h3>
-        <p><strong>Relational Database:</strong> Stores data in tables (relations) with rows (tuples) and columns (attributes). Relationships enforced via keys.</p>
-        
-        <div class="key-points">
-            <h3><i class="fas fa-not-equal"></i> Differences from Other Models</h3>
-            <ul>
-                <li>vs. Hierarchical/Network: Uses logical links (keys) instead of physical pointers</li>
-                <li>vs. Object-Oriented: Avoids complex inheritance; relies on tables</li>
-                <li>vs. NoSQL: Requires fixed schema; strict ACID compliance</li>
-            </ul>
-        </div>
-    </div>
-    
-    <div class="definition-box">
-        <h3><i class="fas fa-copy"></i> 5. Data Redundancy</h3>
-        <p><strong>Data Redundancy:</strong> Unnecessary duplication of data (e.g., storing same address in multiple files).</p>
-        
-        <div class="key-points">
-            <h3><i class="fas fa-database"></i> How DBMS Reduces Redundancy</h3>
-            <ul>
-                <li>Normalization: Splits tables to store data once</li>
-                <li>Foreign Keys: References unique IDs instead of repeating data</li>
-                <li>Centralized Storage: Single source of truth for critical data</li>
-            </ul>
-        </div>
-    </div>
-    
-    <div class="definition-box">
-        <h3><i class="fas fa-server"></i> 6. Centralized vs Distributed Databases</h3>
-        <div class="table-container">
-            <table class="content-table">
-                <thead>
-                    <tr>
-                        <th>Aspect</th>
-                        <th>Centralized</th>
-                        <th>Distributed</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Data Location</td>
-                        <td>Single server/location</td>
-                        <td>Multiple servers across locations</td>
-                    </tr>
-                    <tr>
-                        <td>Fault Tolerance</td>
-                        <td>Low (single point of failure)</td>
-                        <td>High (data replicated across nodes)</td>
-                    </tr>
-                    <tr>
-                        <td>Performance</td>
-                        <td>Faster for small-scale operations</td>
-                        <td>Optimized for large-scale distributed access</td>
-                    </tr>
-                    <tr>
-                        <td>Complexity</td>
-                        <td>Easier to manage</td>
-                        <td>Complex coordination required</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    
-    <div class="definition-box">
-        <h3><i class="fas fa-user-tie"></i> 7. Database Administrator (DBA)</h3>
-        <p><strong>DBA:</strong> Specialist responsible for managing and maintaining database systems.</p>
-        
-        <div class="key-points">
-            <h3><i class="fas fa-tasks"></i> Responsibilities</h3>
-            <ul>
-                <li>Designing and implementing database structures</li>
-                <li>Ensuring security (access controls, encryption)</li>
-                <li>Monitoring performance and optimizing queries</li>
-                <li>Backup, recovery, and disaster planning</li>
-                <li>Enforcing data integrity and compliance standards</li>
-            </ul>
-        </div>
-    </div>
-    
-    <div class="definition-box">
-        <h3><i class="fas fa-filter"></i> 8. Normalization: 1NF, 2NF, and 3NF</h3>
-        <p><strong>Normalization:</strong> Process of organizing data to minimize redundancy.</p>
-        
-        <div class="normalization-steps">
-            <div class="normalization-step">
-                <h4>1NF (First Normal Form)</h4>
-                <p><strong>Rule:</strong> Atomic values; no repeating groups</p>
-                <p><strong>Example:</strong> Convert Students (ID, Name, [Subject1, Subject2]) to Students (ID, Name, Subject)</p>
-            </div>
-            
-            <div class="normalization-step">
-                <h4>2NF (Second Normal Form)</h4>
-                <p><strong>Rule:</strong> 1NF + no partial dependencies</p>
-                <p><strong>Example:</strong> Split Orders (OrderID, ProductID, ProductName, Price) into Orders (OrderID, ProductID) and Products (ProductID, ProductName, Price)</p>
-            </div>
-            
-            <div class="normalization-step">
-                <h4>3NF (Third Normal Form)</h4>
-                <p><strong>Rule:</strong> 2NF + no transitive dependencies</p>
-                <p><strong>Example:</strong> Split Employees (EmpID, Name, Dept, DeptLocation) into Employees (EmpID, Name, Dept) and Departments (Dept, DeptLocation)</p>
-            </div>
-        </div>
-    </div>
-    
-    <div class="definition-box">
-        <h3><i class="fas fa-key"></i> 9. Keys in Databases</h3>
-        <div class="model-card-container">
-            <div class="model-card">
-                <h3><i class="fas fa-key"></i> Primary Key</h3>
-                <p>Unique identifier for a table (e.g., StudentID in Students)</p>
-            </div>
-            
-            <div class="model-card">
-                <h3><i class="fas fa-key"></i> Foreign Key</h3>
-                <p>Attribute linking to another table's primary key (e.g., DeptID in Employees referencing Departments)</p>
-            </div>
-            
-            <div class="model-card">
-                <h3><i class="fas fa-key"></i> Candidate Key</h3>
-                <p>Column(s) eligible to be a primary key (e.g., Email or SSN in Users)</p>
-            </div>
-        </div>
-    </div>
-    
-    <div class="definition-box">
-        <h3><i class="fas fa-code"></i> 10. SQL Components and Functions</h3>
-        <p><strong>SQL (Structured Query Language):</strong> Standard language for managing relational databases.</p>
-        
-        <div class="key-points">
-            <h3><i class="fas fa-cogs"></i> SQL Components</h3>
-            <ul>
-                <li>DDL (Data Definition Language): CREATE, ALTER, DROP</li>
-                <li>DML (Data Manipulation Language): SELECT, INSERT, UPDATE, DELETE</li>
-                <li>DCL (Data Control Language): GRANT, REVOKE</li>
-                <li>TCL (Transaction Control Language): COMMIT, ROLLBACK</li>
-            </ul>
+    <!-- DBMS Questions & Answers -->
+    <div class="content-section">
+        <div class="section-title">
+            <i class="fas fa-question-circle"></i>
+            <h2>DBMS Questions & Answers</h2>
         </div>
         
-        <div class="key-points">
-            <h3><i class="fas fa-functions"></i> Common SQL Functions</h3>
-            <ul>
-                <li><strong>Aggregate:</strong> SUM(), COUNT(), AVG()</li>
-                <li><strong>String:</strong> CONCAT(), SUBSTRING()</li>
-                <li><strong>Date:</strong> CURRENT_DATE(), DATEDIFF()</li>
-            </ul>
+        <!-- Question 1 -->
+        <div class="question-container">
+            <h3><i class="fas fa-database"></i> 1. What is a Database and DBMS?</h3>
+            <p><strong>Database:</strong> An organized collection of structured data stored electronically for efficient access, management, and updates.</p>
+            <p><strong>DBMS (Database Management System):</strong> Software that manages databases (e.g., MySQL, Oracle). It provides tools for defining, creating, querying, updating, and administering databases.</p>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-check-circle"></i> Advantages of DBMS</h3>
+                <ul>
+                    <li>Reduced Data Redundancy: Minimizes duplicate data through normalization</li>
+                    <li>Improved Data Integrity: Enforces constraints (e.g., unique keys)</li>
+                    <li>Enhanced Security: Role-based access control, encryption</li>
+                    <li>Data Sharing and Concurrency: Supports simultaneous access</li>
+                    <li>Backup and Recovery: Automated tools for data restoration</li>
+                    <li>Data Independence: Applications insulated from storage changes</li>
+                </ul>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-exclamation-triangle"></i> Disadvantages of DBMS</h3>
+                <ul>
+                    <li>High Setup Cost: Expensive licensing, hardware, and personnel</li>
+                    <li>Complexity: Requires expertise in design and maintenance</li>
+                    <li>Performance Overhead: Resource-intensive operations</li>
+                    <li>Scalability Limitations: Vertical scaling challenges</li>
+                    <li>Single Point of Failure: Centralized databases risk downtime</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Question 2 -->
+        <div class="question-container">
+            <h3><i class="fas fa-file-alt"></i> 2. File Processing System vs DBMS</h3>
+            <div class="qa-table-container">
+                <table class="qa-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>File Processing System</th>
+                            <th>DBMS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Data Redundancy</td>
+                            <td>High redundancy (duplicated across files)</td>
+                            <td>Minimal redundancy (centralized data)</td>
+                        </tr>
+                        <tr>
+                            <td>Data Consistency</td>
+                            <td>Low consistency (changes may not propagate)</td>
+                            <td>High consistency (automatic update propagation)</td>
+                        </tr>
+                        <tr>
+                            <td>Data Sharing</td>
+                            <td>Limited sharing (isolated files)</td>
+                            <td>Efficient sharing (concurrent access)</td>
+                        </tr>
+                        <tr>
+                            <td>Security</td>
+                            <td>Weak security (file-level permissions)</td>
+                            <td>Robust security (roles, encryption, access controls)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Question 3 -->
+        <div class="question-container">
+            <h3><i class="fas fa-project-diagram"></i> 3. DBMS Models</h3>
+            <div class="model-card-container">
+                <div class="model-card">
+                    <h3><i class="fas fa-sitemap"></i> Hierarchical Model</h3>
+                    <p><strong>Structure:</strong> Tree-like (parent-child relationships)</p>
+                    <p><strong>Advantages:</strong> Fast access for hierarchical data</p>
+                    <p><strong>Disadvantages:</strong> Inflexible; cannot model many-to-many relationships</p>
+                </div>
+                
+                <div class="model-card">
+                    <h3><i class="fas fa-network-wired"></i> Network Model</h3>
+                    <p><strong>Structure:</strong> Graph-like (multiple parent-child connections)</p>
+                    <p><strong>Advantages:</strong> Handles complex relationships</p>
+                    <p><strong>Disadvantages:</strong> High complexity in design and queries</p>
+                </div>
+                
+                <div class="model-card">
+                    <h3><i class="fas fa-table"></i> Relational Model</h3>
+                    <p><strong>Structure:</strong> Tables (rows and columns)</p>
+                    <p><strong>Advantages:</strong> Simple design, SQL support, flexible queries</p>
+                    <p><strong>Disadvantages:</strong> Performance issues with complex joins</p>
+                </div>
+                
+                <div class="model-card">
+                    <h3><i class="fas fa-shapes"></i> Object-Oriented Model</h3>
+                    <p><strong>Structure:</strong> Objects (attributes and methods)</p>
+                    <p><strong>Advantages:</strong> Suitable for complex data (e.g., multimedia)</p>
+                    <p><strong>Disadvantages:</strong> Steep learning curve; limited adoption</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Question 4 -->
+        <div class="question-container">
+            <h3><i class="fas fa-table"></i> 4. Relational Database</h3>
+            <p><strong>Relational Database:</strong> Stores data in tables (relations) with rows (tuples) and columns (attributes). Relationships enforced via keys.</p>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-not-equal"></i> Differences from Other Models</h3>
+                <ul>
+                    <li>vs. Hierarchical/Network: Uses logical links (keys) instead of physical pointers</li>
+                    <li>vs. Object-Oriented: Avoids complex inheritance; relies on tables</li>
+                    <li>vs. NoSQL: Requires fixed schema; strict ACID compliance</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Question 5 -->
+        <div class="question-container">
+            <h3><i class="fas fa-copy"></i> 5. Data Redundancy</h3>
+            <p><strong>Data Redundancy:</strong> Unnecessary duplication of data (e.g., storing same address in multiple files).</p>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-database"></i> How DBMS Reduces Redundancy</h3>
+                <ul>
+                    <li>Normalization: Splits tables to store data once</li>
+                    <li>Foreign Keys: References unique IDs instead of repeating data</li>
+                    <li>Centralized Storage: Single source of truth for critical data</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Question 6 -->
+        <div class="question-container">
+            <h3><i class="fas fa-server"></i> 6. Centralized vs Distributed Databases</h3>
+            <div class="qa-table-container">
+                <table class="qa-table">
+                    <thead>
+                        <tr>
+                            <th>Aspect</th>
+                            <th>Centralized</th>
+                            <th>Distributed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Data Location</td>
+                            <td>Single server/location</td>
+                            <td>Multiple servers across locations</td>
+                        </tr>
+                        <tr>
+                            <td>Fault Tolerance</td>
+                            <td>Low (single point of failure)</td>
+                            <td>High (data replicated across nodes)</td>
+                        </tr>
+                        <tr>
+                            <td>Performance</td>
+                            <td>Faster for small-scale operations</td>
+                            <td>Optimized for large-scale distributed access</td>
+                        </tr>
+                        <tr>
+                            <td>Complexity</td>
+                            <td>Easier to manage</td>
+                            <td>Complex coordination required</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Question 7 -->
+        <div class="question-container">
+            <h3><i class="fas fa-user-tie"></i> 7. Database Administrator (DBA)</h3>
+            <p><strong>DBA:</strong> Specialist responsible for managing and maintaining database systems.</p>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-tasks"></i> Responsibilities</h3>
+                <ul>
+                    <li>Designing and implementing database structures</li>
+                    <li>Ensuring security (access controls, encryption)</li>
+                    <li>Monitoring performance and optimizing queries</li>
+                    <li>Backup, recovery, and disaster planning</li>
+                    <li>Enforcing data integrity and compliance standards</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Question 8 -->
+        <div class="question-container">
+            <h3><i class="fas fa-filter"></i> 8. Normalization: 1NF, 2NF, and 3NF</h3>
+            <p><strong>Normalization:</strong> Process of organizing data to minimize redundancy.</p>
+            
+            <div class="normalization-steps">
+                <div class="normalization-step">
+                    <h4>1NF (First Normal Form)</h4>
+                    <p><strong>Rule:</strong> Atomic values; no repeating groups</p>
+                    <p><strong>Example:</strong> Convert Students (ID, Name, [Subject1, Subject2]) to Students (ID, Name, Subject)</p>
+                </div>
+                
+                <div class="normalization-step">
+                    <h4>2NF (Second Normal Form)</h4>
+                    <p><strong>Rule:</strong> 1NF + no partial dependencies</p>
+                    <p><strong>Example:</strong> Split Orders (OrderID, ProductID, ProductName, Price) into Orders (OrderID, ProductID) and Products (ProductID, ProductName, Price)</p>
+                </div>
+                
+                <div class="normalization-step">
+                    <h4>3NF (Third Normal Form)</h4>
+                    <p><strong>Rule:</strong> 2NF + no transitive dependencies</p>
+                    <p><strong>Example:</strong> Split Employees (EmpID, Name, Dept, DeptLocation) into Employees (EmpID, Name, Dept) and Departments (Dept, DeptLocation)</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Question 9 -->
+        <div class="question-container">
+            <h3><i class="fas fa-key"></i> 9. Keys in Databases</h3>
+            <div class="model-card-container">
+                <div class="model-card">
+                    <h3><i class="fas fa-key"></i> Primary Key</h3>
+                    <p>Unique identifier for a table (e.g., StudentID in Students)</p>
+                </div>
+                
+                <div class="model-card">
+                    <h3><i class="fas fa-key"></i> Foreign Key</h3>
+                    <p>Attribute linking to another table's primary key (e.g., DeptID in Employees referencing Departments)</p>
+                </div>
+                
+                <div class="model-card">
+                    <h3><i class="fas fa-key"></i> Candidate Key</h3>
+                    <p>Column(s) eligible to be a primary key (e.g., Email or SSN in Users)</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Question 10 -->
+        <div class="question-container">
+            <h3><i class="fas fa-code"></i> 10. SQL Components and Functions</h3>
+            <p><strong>SQL (Structured Query Language):</strong> Standard language for managing relational databases.</p>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-cogs"></i> SQL Components</h3>
+                <ul>
+                    <li>DDL (Data Definition Language): CREATE, ALTER, DROP</li>
+                    <li>DML (Data Manipulation Language): SELECT, INSERT, UPDATE, DELETE</li>
+                    <li>DCL (Data Control Language): GRANT, REVOKE</li>
+                    <li>TCL (Transaction Control Language): COMMIT, ROLLBACK</li>
+                </ul>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-functions"></i> Common SQL Functions</h3>
+                <ul>
+                    <li><strong>Aggregate:</strong> SUM(), COUNT(), AVG()</li>
+                    <li><strong>String:</strong> CONCAT(), SUBSTRING()</li>
+                    <li><strong>Date:</strong> CURRENT_DATE(), DATEDIFF()</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Question 11 -->
+        <div class="question-container">
+            <h3><i class="fas fa-terminal"></i> 11. SQL Commands</h3>
+            <div class="sql-code">
+                <span class="sql-comment">-- a. Create table</span><br>
+                <span class="sql-keyword">CREATE TABLE</span> students (<br>
+                &nbsp;&nbsp;Id <span class="sql-keyword">INT PRIMARY KEY</span>,<br>
+                &nbsp;&nbsp;Name <span class="sql-keyword">VARCHAR</span>(50) <span class="sql-keyword">NOT NULL</span>,<br>
+                &nbsp;&nbsp;Class <span class="sql-keyword">CHAR</span>(3),<br>
+                &nbsp;&nbsp;Marks <span class="sql-keyword">INT CHECK</span> (Marks >= 0)<br>
+                );<br><br>
+                
+                <span class="sql-comment">-- b. Insert records</span><br>
+                <span class="sql-keyword">INSERT INTO</span> students (Id, Name, Class, Marks) <br>
+                <span class="sql-keyword">VALUES</span> <br>
+                &nbsp;&nbsp;(1, <span class="sql-string">'Raj'</span>, <span class="sql-string">'10A'</span>, 92),<br>
+                &nbsp;&nbsp;(2, <span class="sql-string">'Anita'</span>, <span class="sql-string">'9B'</span>, 78);<br><br>
+                
+                <span class="sql-comment">-- c. Display all records</span><br>
+                <span class="sql-keyword">SELECT</span> * <span class="sql-keyword">FROM</span> students;<br><br>
+                
+                <span class="sql-comment">-- d. Update marks</span><br>
+                <span class="sql-keyword">UPDATE</span> students <br>
+                <span class="sql-keyword">SET</span> Marks = 85 <br>
+                <span class="sql-keyword">WHERE</span> Name = <span class="sql-string">'Anita'</span>;<br><br>
+                
+                <span class="sql-comment">-- e. Delete a record</span><br>
+                <span class="sql-keyword">DELETE FROM</span> students <br>
+                <span class="sql-keyword">WHERE</span> Id = 3;
+            </div>
+        </div>
+        
+        <!-- Question 12 -->
+        <div class="question-container">
+            <h3><i class="fas fa-book"></i> 12. Key Definitions</h3>
+            <div class="key-points">
+                <ul>
+                    <li><strong>Data Dictionary:</strong> Metadata repository storing database schema details</li>
+                    <li><strong>Primary Key:</strong> Unique identifier for a table record (e.g., ISBN in Books)</li>
+                    <li><strong>Relationship:</strong> Association between tables (e.g., one-to-many between Authors and Books)</li>
+                    <li><strong>DML (Data Manipulation Language):</strong> Commands for data operations (INSERT, SELECT, etc.)</li>
+                    <li><strong>Data Integrity:</strong> Accuracy and consistency of data via constraints</li>
+                </ul>
+            </div>
         </div>
     </div>
-    
-    <div class="definition-box">
-        <h3><i class="fas fa-terminal"></i> 11. SQL Commands</h3>
-        <pre><code class="sql">-- a. Create table
-CREATE TABLE students (
-  Id INT PRIMARY KEY,
-  Name VARCHAR(50) NOT NULL,
-  Class CHAR(3),
-  Marks INT CHECK (Marks >= 0)
-);
-
--- b. Insert records
-INSERT INTO students (Id, Name, Class, Marks) 
-VALUES 
-  (1, 'Raj', '10A', 92),
-  (2, 'Anita', '9B', 78);
-
--- c. Display all records
-SELECT * FROM students;
-
--- d. Update marks
-UPDATE students 
-SET Marks = 85 
-WHERE Name = 'Anita';
-
--- e. Delete a record
-DELETE FROM students 
-WHERE Id = 3;</code></pre>
-    </div>
-    
-    <div class="definition-box">
-        <h3><i class="fas fa-book"></i> 12. Key Definitions</h3>
-        <div class="key-points">
-            <ul>
-                <li><strong>Data Dictionary:</strong> Metadata repository storing database schema details</li>
-                <li><strong>Primary Key:</strong> Unique identifier for a table record (e.g., ISBN in Books)</li>
-                <li><strong>Relationship:</strong> Association between tables (e.g., one-to-many between Authors and Books)</li>
-                <li><strong>DML (Data Manipulation Language):</strong> Commands for data operations (INSERT, SELECT, etc.)</li>
-                <li><strong>Data Integrity:</strong> Accuracy and consistency of data via constraints</li>
-            </ul>
-        </div>
-    </div>
-</div>
     <footer>
         <div class="footer-content">
             <div class="footer-column">
@@ -1278,6 +1373,17 @@ WHERE Id = 3;</code></pre>
             card.style.transform = 'translateY(20px)';
             card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
             observer.observe(card);
+        });
+ document.addEventListener('DOMContentLoaded', function() {
+            const codeElement = document.querySelector('.sql-code');
+            if (codeElement) {
+                const code = codeElement.innerHTML;
+                const highlightedCode = code
+                    .replace(/(--.*)/g, '<span class="sql-comment">$1</span>')
+                    .replace(/\b(CREATE|TABLE|INT|PRIMARY|KEY|VARCHAR|NOT|NULL|CHAR|CHECK|INSERT|INTO|VALUES|SELECT|FROM|UPDATE|SET|WHERE|DELETE)\b/g, '<span class="sql-keyword">$1</span>')
+                    .replace(/\b(SUM|COUNT|AVG|CONCAT|SUBSTRING|CURRENT_DATE|DATEDIFF)\b/g, '<span class="sql-function">$1</span>');
+                codeElement.innerHTML = highlightedCode;
+            }
         });
     </script>
 </body>
