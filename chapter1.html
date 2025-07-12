@@ -566,6 +566,52 @@
             color: #75715e;
         }
         
+        /* 404 Page Styles */
+        .error-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 70vh;
+            padding: 2rem;
+        }
+        
+        .error-icon {
+            font-size: 6rem;
+            color: var(--danger);
+            margin-bottom: 1.5rem;
+        }
+        
+        .error-title {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .error-message {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+        
+        .error-link {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .error-link:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
         /* Responsive Design */
         @media (max-width: 992px) {
             .container {
@@ -630,10 +676,10 @@
         
         <div class="nav-menu">
             <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
-            <a href="#" class="nav-link active"><i class="fas fa-book"></i> Chapter 1</a>
-            <a href="#" class="nav-link"><i class="fas fa-book"></i> Chapter 2</a>
-            <a href="#" class="nav-link"><i class="fas fa-book"></i> Chapter 3</a>
-            <a href="#" class="nav-link"><i class="fas fa-book"></i> Chapter 4</a>
+            <a href="chapter1.html" class="nav-link active"><i class="fas fa-book"></i> Chapter 1</a>
+            <a href="chapter2.html" class="nav-link"><i class="fas fa-book"></i> Chapter 2</a>
+            <a href="chapter3.html" class="nav-link"><i class="fas fa-book"></i> Chapter 3</a>
+            <a href="chapter4.html" class="nav-link"><i class="fas fa-book"></i> Chapter 4</a>
         </div>
         
         <div class="search-bar">
@@ -643,10 +689,12 @@
     </header>
 
     <div class="container">
+        <!-- Chapter 1 Content -->
         <div class="chapter-header">
             <h1><i class="fas fa-database"></i> DBMS Fundamentals</h1>
             <p>Comprehensive guide to Database Management Systems covering core concepts, models, and principles for Class 12 Computer Science students.</p>
         </div>
+        
         <!-- Data & Information -->
         <div class="content-section">
             <div class="section-title">
@@ -1322,11 +1370,11 @@
             <div class="footer-column">
                 <h3>Chapters</h3>
                 <ul>
-                    <li><a href="#">DBMS Fundamentals</a></li>
-                    <li><a href="#">Data Communication</a></li>
-                    <li><a href="#">Web Technology II</a></li>
-                    <li><a href="#">C Programming II</a></li>
-                    <li><a href="#">OOP</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="chapter1.html">DBMS Fundamentals</a></li>
+                    <li><a href="chapter2.html">Data Communication</a></li>
+                    <li><a href="chapter3.html">Web Technology II</a></li>
+                    <li><a href="chapter4.html">Advanced Concepts</a></li>
                 </ul>
             </div>
             
