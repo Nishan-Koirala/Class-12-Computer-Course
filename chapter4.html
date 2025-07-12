@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 4: C Programming II | Class 12 CS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header with Navigation */
+        header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo i {
+            color: var(--accent);
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        
+        .search-bar {
+            display: flex;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 0.4rem 1rem;
+        }
+        
+        .search-bar input {
+            background: transparent;
+            border: none;
+            color: white;
+            outline: none;
+            width: 200px;
+        }
+        
+        .search-bar input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .search-bar button {
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            flex: 1;
+        }
+        
+        .chapter-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .chapter-header h1 {
+            font-size: 2.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .chapter-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .chapter-header p {
+            color: var(--gray);
+            max-width: 800px;
+            margin: 2rem auto 0;
+            font-size: 1.2rem;
+        }
+        
+        .content-section {
+            background: white;
+            border-radius: 10px;
+            padding: 2.5rem;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--accent);
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title i {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .section-title h2 {
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+        }
+        
+        .content-section p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: var(--dark);
+        }
+        
+        .content-section ul, .content-section ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .content-section li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .content-section li:before {
+            content: "•";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .definition-box {
+            background: #f1f5f9;
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin: 1.5rem 0;
+        }
+        
+        .definition-box h3 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .definition-box h3 i {
+            color: var(--accent);
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .content-table th {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .content-table td {
+            padding: 0.9rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .content-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        
+        .content-table tr:hover {
+            background-color: #f1f5f9;
+        }
+        
+        .key-points {
+            background: linear-gradient(to right, #e0f2fe, #dbeafe);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .key-points h3 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .key-points ul {
+            padding-left: 1.5rem;
+        }
+        
+        .key-points li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .model-card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .model-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--accent);
+        }
+        
+        .model-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .model-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+        
+        .model-card h3 i {
+            color: var(--accent);
+        }
+        
+        .normalization-steps {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .normalization-step {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .normalization-step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--accent);
+        }
+        
+        .normalization-step h4 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .code-container {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            margin: 1.5rem 0;
+            line-height: 1.5;
+        }
+        
+        .code-container .keyword {
+            color: #f92672;
+        }
+        
+        .code-container .function {
+            color: #66d9ef;
+        }
+        
+        .code-container .comment {
+            color: #75715e;
+        }
+        
+        .code-container .string {
+            color: #a6e22e;
+        }
+        
+        .function-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .function-category {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            border-top: 4px solid var(--secondary);
+        }
+        
+        .function-category h3 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 2rem 2rem;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-column a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 3rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            .content-section {
+                padding: 1.5rem;
+            }
+            
+            .chapter-header h1 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .search-bar {
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.5rem;
+            }
+            
+            .normalization-steps {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .chapter-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title i {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-code"></i>
+            <span>Class 12 CS</span>
+        </div>
+        
+        <div class="nav-menu">
+            <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+            <a href="chapter1.html" class="nav-link"><i class="fas fa-book"></i> Chapter 1</a>
+            <a href="chapter2.html" class="nav-link"><i class="fas fa-book"></i> Chapter 2</a>
+            <a href="chapter3.html" class="nav-link"><i class="fas fa-book"></i> Chapter 3</a>
+            <a href="#" class="nav-link active"><i class="fas fa-book"></i> Chapter 4</a>
+        </div>
+        
+        <div class="search-bar">
+            <input type="text" placeholder="Search C programming...">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="chapter-header">
+            <h1><i class="fas fa-cogs"></i> C Programming II</h1>
+            <p>Comprehensive guide to C programming functions, storage classes, and advanced concepts for Class 12 Computer Science students.</p>
+        </div>
+        
+        <!-- 1. Working with Functions -->
+        <div class="content-section">
+            <div class="section-title">
+                <i class="fas fa-cogs"></i>
+                <h2>1. Working with Functions</h2>
+            </div>
+            
+            <p>Functions are the building blocks of C programs. They allow you to divide your program into reusable modules, making your code more organized, readable, and maintainable.</p>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-code"></i> a. Define Function</h3>
+                <p>A function is a self-contained block of code that performs a specific task. It has a name, may take parameters, and may return a value.</p>
+            </div>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-syntax"></i> b. Syntax of Functions</h3>
+                <pre>return_type function_name(parameter_list) {
+    // function body
+    return value; // optional
+}</pre>
+            </div>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-list"></i> c. Types of Functions</h3>
+                <div class="model-card-container">
+                    <div class="model-card">
+                        <h3><i class="fas fa-book"></i> Library Functions</h3>
+                        <p>Predefined functions provided by C standard library (e.g., printf(), scanf(), sqrt())</p>
+                    </div>
+                    
+                    <div class="model-card">
+                        <h3><i class="fas fa-user-edit"></i> User Defined Functions</h3>
+                        <p>Functions created by programmers to perform specific tasks as needed</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-puzzle-piece"></i> d. Components of Function</h3>
+                <div class="key-points">
+                    <h3><i class="fas fa-file-code"></i> i. Function Prototype</h3>
+                    <p>Declaration that tells the compiler about a function's name, return type, and parameters. Placed before main().</p>
+                    <pre>int add(int a, int b); // Prototype</pre>
+                </div>
+                
+                <div class="key-points">
+                    <h3><i class="fas fa-phone"></i> ii. Function Call</h3>
+                    <p>Invoking a function to execute its code.</p>
+                    <pre>int result = add(5, 3); // Call</pre>
+                </div>
+                
+                <div class="key-points">
+                    <h3><i class="fas fa-file-alt"></i> iii. Function Definition</h3>
+                    <p>Actual implementation of the function containing the code to be executed.</p>
+                    <pre>int add(int a, int b) { // Definition
+    return a + b;
+}</pre>
+                </div>
+                
+                <div class="key-points">
+                    <h3><i class="fas fa-undo"></i> iv. Return Type</h3>
+                    <p>Specifies the data type of the value the function returns. Use void if no value is returned.</p>
+                    <pre>int add(...); // Returns integer
+void print(...); // Returns nothing</pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 2. Categories of Functions -->
+        <div class="content-section">
+            <div class="section-title">
+                <i class="fas fa-sitemap"></i>
+                <h2>2. Categories of Functions with Examples</h2>
+            </div>
+            
+            <div class="function-categories">
+                <div class="function-category">
+                    <h3><i class="fas fa-arrow-right"></i> i. With return type but no arguments</h3>
+                    <p>Function returns a value but takes no parameters</p>
+                    <div class="code-container">
+                        <span class="keyword">int</span> getNumber() {<br>
+                        &nbsp;&nbsp;<span class="keyword">return</span> 42;<br>
+                        }<br><br>
+                        <span class="comment">// Call: int num = getNumber();</span>
+                    </div>
+                </div>
+                
+                <div class="function-category">
+                    <h3><i class="fas fa-exchange-alt"></i> ii. With return type with arguments</h3>
+                    <p>Function returns a value and takes parameters</p>
+                    <div class="code-container">
+                        <span class="keyword">int</span> <span class="function">add</span>(<span class="keyword">int</span> a, <span class="keyword">int</span> b) {<br>
+                        &nbsp;&nbsp;<span class="keyword">return</span> a + b;<br>
+                        }<br><br>
+                        <span class="comment">// Call: int sum = add(5, 3);</span>
+                    </div>
+                </div>
+                
+                <div class="function-category">
+                    <h3><i class="fas fa-ban"></i> iii. No return type with no arguments</h3>
+                    <p>Function returns nothing and takes no parameters</p>
+                    <div class="code-container">
+                        <span class="keyword">void</span> <span class="function">greet</span>() {<br>
+                        &nbsp;&nbsp;printf(<span class="string">"Hello, World!"</span>);<br>
+                        }<br><br>
+                        <span class="comment">// Call: greet();</span>
+                    </div>
+                </div>
+                
+                <div class="function-category">
+                    <h3><i class="fas fa-ban"></i> iv. No return type with arguments</h3>
+                    <p>Function returns nothing but takes parameters</p>
+                    <div class="code-container">
+                        <span class="keyword">void</span> <span class="function">printSum</span>(<span class="keyword">int</span> a, <span class="keyword">int</span> b) {<br>
+                        &nbsp;&nbsp;printf(<span class="string">"Sum: %d"</span>, a + b);<br>
+                        }<br><br>
+                        <span class="comment">// Call: printSum(5, 3);</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 3. Storage Classes -->
+        <div class="content-section">
+            <div class="section-title">
+                <i class="fas fa-database"></i>
+                <h2>3. Storage Classes</h2>
+            </div>
+            
+            <p>Storage classes in C define the scope, visibility, and lifetime of variables and functions. They determine where the variable is stored and how long it exists.</p>
+            
+            <div class="table-container">
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Storage Class</th>
+                            <th>Keyword</th>
+                            <th>Lifetime</th>
+                            <th>Scope</th>
+                            <th>Initial Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Automatic</td>
+                            <td>auto</td>
+                            <td>Function block</td>
+                            <td>Local to function</td>
+                            <td>Garbage</td>
+                        </tr>
+                        <tr>
+                            <td>External</td>
+                            <td>extern</td>
+                            <td>Entire program</td>
+                            <td>Global</td>
+                            <td>Zero</td>
+                        </tr>
+                        <tr>
+                            <td>Register</td>
+                            <td>register</td>
+                            <td>Function block</td>
+                            <td>Local to function</td>
+                            <td>Garbage</td>
+                        </tr>
+                        <tr>
+                            <td>Static</td>
+                            <td>static</td>
+                            <td>Entire program</td>
+                            <td>Local to function</td>
+                            <td>Zero</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-car"></i> i. Automatic (auto)</h3>
+                <p>Default storage class for local variables. Variables are created when the function is called and destroyed when the function exits.</p>
+                <div class="code-container">
+                    <span class="keyword">void</span> <span class="function">func</span>() {<br>
+                    &nbsp;&nbsp;<span class="keyword">auto</span> <span class="keyword">int</span> x = 10; <span class="comment">// same as: int x = 10;</span><br>
+                    }
+                </div>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-globe"></i> ii. External (extern)</h3>
+                <p>Used to declare a global variable that is visible to all program files. Defined in one file and can be used in others.</p>
+                <div class="code-container">
+                    <span class="comment">// File1.c</span><br>
+                    <span class="keyword">int</span> count = 0; <span class="comment">// Definition</span><br><br>
+                    
+                    <span class="comment">// File2.c</span><br>
+                    <span class="keyword">extern</span> <span class="keyword">int</span> count; <span class="comment">// Declaration</span><br>
+                    <span class="function">printf</span>(<span class="string">"%d"</span>, count);
+                </div>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-microchip"></i> iii. Register</h3>
+                <p>Suggests to the compiler to store the variable in a CPU register instead of RAM for faster access.</p>
+                <div class="code-container">
+                    <span class="keyword">void</span> <span class="function">func</span>() {<br>
+                    &nbsp;&nbsp;<span class="keyword">register</span> <span class="keyword">int</span> i; <span class="comment">// For loop counters</span><br>
+                    }
+                </div>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-anchor"></i> iv. Static</h3>
+                <p>Preserves variable value between function calls. For global variables, limits scope to the current file.</p>
+                <div class="code-container">
+                    <span class="keyword">void</span> <span class="function">counter</span>() {<br>
+                    &nbsp;&nbsp;<span class="keyword">static</span> <span class="keyword">int</span> count = 0; <span class="comment">// Preserves value</span><br>
+                    &nbsp;&nbsp;count++;<br>
+                    &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"%d "</span>, count);<br>
+                    }<br>
+                    <span class="comment">// First call: 1, Second: 2, Third: 3</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 4. Recursive Functions -->
+        <div class="content-section">
+            <div class="section-title">
+                <i class="fas fa-infinity"></i>
+                <h2>4. Recursive Functions</h2>
+            </div>
+            
+            <p>A recursive function is a function that calls itself directly or indirectly. Recursion is useful for solving problems that can be broken down into smaller, similar subproblems.</p>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-syntax"></i> Syntax of Recursive Function</h3>
+                <pre>return_type function_name(parameters) {
+    // Base case
+    if (base_condition) 
+        return value;
+    
+    // Recursive case
+    return function_name(modified_parameters);
+}</pre>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-calculator"></i> Example: Factorial Calculation</h3>
+                <div class="code-container">
+                    <span class="keyword">int</span> <span class="function">factorial</span>(<span class="keyword">int</span> n) {<br>
+                    &nbsp;&nbsp;<span class="comment">// Base case</span><br>
+                    &nbsp;&nbsp;<span class="keyword">if</span> (n == 0 || n == 1)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> 1;<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;<span class="comment">// Recursive case</span><br>
+                    &nbsp;&nbsp;<span class="keyword">return</span> n * <span class="function">factorial</span>(n - 1);<br>
+                    }<br><br>
+                    
+                    <span class="comment">// Call: int result = factorial(5); // 120</span>
+                </div>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-snowflake"></i> Example: Fibonacci Series</h3>
+                <div class="code-container">
+                    <span class="keyword">int</span> <span class="function">fibonacci</span>(<span class="keyword">int</span> n) {<br>
+                    &nbsp;&nbsp;<span class="comment">// Base cases</span><br>
+                    &nbsp;&nbsp;<span class="keyword">if</span> (n <= 1)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> n;<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;<span class="comment">// Recursive case</span><br>
+                    &nbsp;&nbsp;<span class="keyword">return</span> <span class="function">fibonacci</span>(n - 1) + <span class="function">fibonacci</span>(n - 2);<br>
+                    }<br><br>
+                    
+                    <span class="comment">// Call: int fib = fibonacci(6); // 8</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 5. Passing Arrays to Functions -->
+        <div class="content-section">
+            <div class="section-title">
+                <i class="fas fa-arrows-alt-h"></i>
+                <h2>5. Passing Arrays to Functions</h2>
+            </div>
+            
+            <p>Arrays can be passed to functions either by passing individual elements or by passing the entire array. When passing an entire array, we typically pass the base address and size.</p>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-code"></i> Example 1: Passing 1D Array</h3>
+                <div class="code-container">
+                    <span class="comment">// Function to print array elements</span><br>
+                    <span class="keyword">void</span> <span class="function">printArray</span>(<span class="keyword">int</span> arr[], <span class="keyword">int</span> size) {<br>
+                    &nbsp;&nbsp;<span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i < size; i++) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"%d "</span>, arr[i]);<br>
+                    &nbsp;&nbsp;}<br>
+                    }<br><br>
+                    
+                    <span class="keyword">int</span> <span class="function">main</span>() {<br>
+                    &nbsp;&nbsp;<span class="keyword">int</span> numbers[] = {1, 2, 3, 4, 5};<br>
+                    &nbsp;&nbsp;<span class="function">printArray</span>(numbers, 5);<br>
+                    &nbsp;&nbsp;<span class="keyword">return</span> 0;<br>
+                    }
+                </div>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-table"></i> Example 2: Passing 2D Array</h3>
+                <div class="code-container">
+                    <span class="comment">// Function to print 2D array</span><br>
+                    <span class="keyword">void</span> <span class="function">printMatrix</span>(<span class="keyword">int</span> rows, <span class="keyword">int</span> cols, <span class="keyword">int</span> mat[][cols]) {<br>
+                    &nbsp;&nbsp;<span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i < rows; i++) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span> (<span class="keyword">int</span> j = 0; j < cols; j++) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"%d "</span>, mat[i][j]);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"\n"</span>);<br>
+                    &nbsp;&nbsp;}<br>
+                    }<br><br>
+                    
+                    <span class="keyword">int</span> <span class="function">main</span>() {<br>
+                    &nbsp;&nbsp;<span class="keyword">int</span> matrix[2][3] = {{1, 2, 3}, {4, 5, 6}};<br>
+                    &nbsp;&nbsp;<span class="function">printMatrix</span>(2, 3, matrix);<br>
+                    &nbsp;&nbsp;<span class="keyword">return</span> 0;<br>
+                    }
+                </div>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-sync"></i> Example 3: Modifying Array Elements</h3>
+                <div class="code-container">
+                    <span class="comment">// Function to double array elements</span><br>
+                    <span class="keyword">void</span> <span class="function">doubleArray</span>(<span class="keyword">int</span> *arr, <span class="keyword">int</span> size) {<br>
+                    &nbsp;&nbsp;<span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i < size; i++) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;arr[i] *= 2; <span class="comment">// Modifies original array</span><br>
+                    &nbsp;&nbsp;}<br>
+                    }<br><br>
+                    
+                    <span class="keyword">int</span> <span class="function">main</span>() {<br>
+                    &nbsp;&nbsp;<span class="keyword">int</span> nums[] = {1, 2, 3};<br>
+                    &nbsp;&nbsp;<span class="function">doubleArray</span>(nums, 3);<br>
+                    &nbsp;&nbsp;<span class="comment">// nums now contains {2, 4, 6}</span><br>
+                    &nbsp;&nbsp;<span class="keyword">return</span> 0;<br>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Class 12 Computer Science</h3>
+                <p>Comprehensive resources for NEB Class 12 Computer Science curriculum.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Chapters</h3>
+                <ul>
+                    <li><a href="chapter1.html">DBMS Fundamentals</a></li>
+                    <li><a href="chapter2.html">Data Communication</a></li>
+                    <li><a href="chapter3.html">Web Technology II</a></li>
+                    <li><a href="chapter4.html">C Programming II</a></li>
+                    <li><a href="#">OOP</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Practical Guides</a></li>
+                    <li><a href="#">Sample Questions</a></li>
+                    <li><a href="#">Reference Materials</a></li>
+                    <li><a href="#">Exam Preparation</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> info@class12cs.com</li>
+                    <li><i class="fas fa-phone"></i> +977-1-XXXXXXX</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Kathmandu, Nepal</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2023 Class 12 Computer Science. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Search functionality
+        document.querySelector('.search-bar button').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-bar input').value.trim();
+            if(searchTerm) {
+                alert(`Searching for: ${searchTerm}`);
+            } else {
+                alert('Please enter a search term');
+            }
+        });
+        
+        // Highlight current section in navigation
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Animation for cards on scroll
+        const cards = document.querySelectorAll('.model-card, .normalization-step, .function-category');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        cards.forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
