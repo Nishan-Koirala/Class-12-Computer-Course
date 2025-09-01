@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapter 4: C Programming II | Class 12 CS</title>
+    <title>Complete C Programming Guide | Class 12 CS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -573,8 +573,8 @@
 
     <div class="container">
         <div class="chapter-header">
-            <h1><i class="fas fa-cogs"></i> C Programming II</h1>
-            <p>Comprehensive guide to C programming functions, storage classes, and advanced concepts for Class 12 Computer Science students.</p>
+            <h1><i class="fas fa-cogs"></i> Complete C Programming Guide</h1>
+            <p>Comprehensive reference for C programming covering functions, storage classes, pointers, file handling, and advanced concepts for Class 12 Computer Science students.</p>
         </div>
         
         <!-- 1. Working with Functions -->
@@ -584,63 +584,147 @@
                 <h2>1. Working with Functions</h2>
             </div>
             
-            <p>Functions are the building blocks of C programs. They allow you to divide your program into reusable modules, making your code more organized, readable, and maintainable.</p>
+            <p>Functions are fundamental building blocks in C programming that enable code reusability, modularity, and organization. They allow you to break down complex problems into smaller, manageable pieces.</p>
             
             <div class="definition-box">
-                <h3><i class="fas fa-code"></i> a. Define Function</h3>
-                <p>A function is a self-contained block of code that performs a specific task. It has a name, may take parameters, and may return a value.</p>
+                <h3><i class="fas fa-code"></i> a. Function Definition</h3>
+                <p>A function is a self-contained block of code designed to perform a specific task. It has a unique name, may accept parameters, and may return a value.</p>
+                <div class="code-container">
+                    <span class="comment">// Function definition syntax</span><br>
+                    <span class="keyword">return_type</span> function_name(parameter_list) {<br>
+                    &nbsp;&nbsp;<span class="comment">// function body - code statements</span><br>
+                    &nbsp;&nbsp;<span class="keyword">return</span> value; <span class="comment">// optional based on return type</span><br>
+                    }
+                </div>
             </div>
             
             <div class="definition-box">
-                <h3><i class="fas fa-syntax"></i> b. Syntax of Functions</h3>
-                <pre>return_type function_name(parameter_list) {
-    // function body
-    return value; // optional
-}</pre>
+                <h3><i class="fas fa-syntax"></i> b. Function Components</h3>
+                <p>Every function in C consists of several key components that define its behavior and usage.</p>
+                
+                <div class="key-points">
+                    <h3><i class="fas fa-file-code"></i> Function Prototype/Declaration</h3>
+                    <p>A function declaration informs the compiler about a function's name, return type, and parameters before it is defined. This allows the function to be called before its definition appears in the code.</p>
+                    <div class="code-container">
+                        <span class="comment">// Function prototype examples</span><br>
+                        <span class="keyword">int</span> add(<span class="keyword">int</span> a, <span class="keyword">int</span> b); <span class="comment">// Declaration with parameters</span><br>
+                        <span class="keyword">void</span> printMessage(); <span class="comment">// Declaration without parameters</span><br>
+                        <span class="keyword">double</span> calculateArea(<span class="keyword">double</span> radius); <span class="comment">// Declaration with different parameter type</span>
+                    </div>
+                </div>
+                
+                <div class="key-points">
+                    <h3><i class="fas fa-phone"></i> Function Call</h3>
+                    <p>A function call invokes the function to execute its code. Arguments passed must match the parameters in type and order.</p>
+                    <div class="code-container">
+                        <span class="comment">// Function call examples</span><br>
+                        <span class="keyword">int</span> result = add(5, 3); <span class="comment">// Call with arguments</span><br>
+                        printMessage(); <span class="comment">// Call without arguments</span><br>
+                        <span class="keyword">double</span> area = calculateArea(2.5); <span class="comment">// Call with floating point argument</span>
+                    </div>
+                </div>
+                
+                <div class="key-points">
+                    <h3><i class="fas fa-file-alt"></i> Function Definition</h3>
+                    <p>The function definition contains the actual implementation of the function - the code that will be executed when the function is called.</p>
+                    <div class="code-container">
+                        <span class="comment">// Function definition examples</span><br>
+                        <span class="keyword">int</span> <span class="function">add</span>(<span class="keyword">int</span> a, <span class="keyword">int</span> b) {<br>
+                        &nbsp;&nbsp;<span class="keyword">return</span> a + b;<br>
+                        }<br><br>
+                        
+                        <span class="keyword">void</span> <span class="function">printMessage</span>() {<br>
+                        &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"Hello, World!\n"</span>);<br>
+                        }<br><br>
+                        
+                        <span class="keyword">double</span> <span class="function">calculateArea</span>(<span class="keyword">double</span> radius) {<br>
+                        &nbsp;&nbsp;<span class="keyword">return</span> 3.14159 * radius * radius;<br>
+                        }
+                    </div>
+                </div>
+                
+                <div class="key-points">
+                    <h3><i class="fas fa-undo"></i> Return Statement</h3>
+                    <p>The return statement terminates function execution and optionally returns a value to the calling function. The returned value must match the function's return type.</p>
+                    <div class="code-container">
+                        <span class="comment">// Return statement examples</span><br>
+                        <span class="keyword">return</span> 0; <span class="comment">// Returning an integer</span><br>
+                        <span class="keyword">return</span> result; <span class="comment">// Returning a variable</span><br>
+                        <span class="keyword">return</span> a + b; <span class="comment">// Returning an expression</span><br>
+                        <span class="keyword">return</span>; <span class="comment">// For void functions (no value returned)</span>
+                    </div>
+                </div>
             </div>
             
             <div class="definition-box">
                 <h3><i class="fas fa-list"></i> c. Types of Functions</h3>
+                <p>Functions in C can be categorized based on their source and purpose.</p>
+                
                 <div class="model-card-container">
                     <div class="model-card">
                         <h3><i class="fas fa-book"></i> Library Functions</h3>
-                        <p>Predefined functions provided by C standard library (e.g., printf(), scanf(), sqrt())</p>
+                        <p>Predefined functions provided by the C standard library. These are ready-to-use functions for common tasks.</p>
+                        <div class="code-container">
+                            <span class="comment">// Examples of library functions</span><br>
+                            <span class="function">printf</span>(); <span class="comment">// Output formatting</span><br>
+                            <span class="function">scanf</span>(); <span class="comment">// Input reading</span><br>
+                            <span class="function">strlen</span>(); <span class="comment">// String length</span><br>
+                            <span class="function">sqrt</span>(); <span class="comment">// Square root</span><br>
+                            <span class="function">pow</span>(); <span class="comment">// Power calculation</span>
+                        </div>
                     </div>
                     
                     <div class="model-card">
-                        <h3><i class="fas fa-user-edit"></i> User Defined Functions</h3>
-                        <p>Functions created by programmers to perform specific tasks as needed</p>
+                        <h3><i class="fas fa-user-edit"></i> User-Defined Functions</h3>
+                        <p>Functions created by programmers to perform specific tasks as needed for their applications.</p>
+                        <div class="code-container">
+                            <span class="comment">// Examples of user-defined functions</span><br>
+                            <span class="keyword">int</span> <span class="function">findMax</span>(<span class="keyword">int</span> a, <span class="keyword">int</span> b);<br>
+                            <span class="keyword">void</span> <span class="function">displayMenu</span>();<br>
+                            <span class="keyword">float</span> <span class="function">calculateTax</span>(<span class="keyword">float</span> income);<br>
+                            <span class="keyword">void</span> <span class="function">sortArray</span>(<span class="keyword">int</span> arr[], <span class="keyword">int</span> size);
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <div class="definition-box">
-                <h3><i class="fas fa-puzzle-piece"></i> d. Components of Function</h3>
-                <div class="key-points">
-                    <h3><i class="fas fa-file-code"></i> i. Function Prototype</h3>
-                    <p>Declaration that tells the compiler about a function's name, return type, and parameters. Placed before main().</p>
-                    <pre>int add(int a, int b); // Prototype</pre>
-                </div>
-                
-                <div class="key-points">
-                    <h3><i class="fas fa-phone"></i> ii. Function Call</h3>
-                    <p>Invoking a function to execute its code.</p>
-                    <pre>int result = add(5, 3); // Call</pre>
-                </div>
-                
-                <div class="key-points">
-                    <h3><i class="fas fa-file-alt"></i> iii. Function Definition</h3>
-                    <p>Actual implementation of the function containing the code to be executed.</p>
-                    <pre>int add(int a, int b) { // Definition
-    return a + b;
-}</pre>
-                </div>
-                
-                <div class="key-points">
-                    <h3><i class="fas fa-undo"></i> iv. Return Type</h3>
-                    <p>Specifies the data type of the value the function returns. Use void if no value is returned.</p>
-                    <pre>int add(...); // Returns integer
-void print(...); // Returns nothing</pre>
+            <div class="key-points">
+                <h3><i class="fas fa-lightbulb"></i> Advantages of Using Functions</h3>
+                <ul>
+                    <li><strong>Code Reusability:</strong> Write once, use multiple times</li>
+                    <li><strong>Modularity:</strong> Break down complex problems into smaller parts</li>
+                    <li><strong>Abstraction:</strong> Hide implementation details</li>
+                    <li><strong>Maintainability:</strong> Easier to debug and update code</li>
+                    <li><strong>Collaboration:</strong> Multiple programmers can work on different functions</li>
+                    <li><strong>Testing:</strong> Individual functions can be tested separately</li>
+                </ul>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-code"></i> Complete Function Example</h3>
+                <div class="code-container">
+                    <span class="comment">// Function declaration (prototype)</span><br>
+                    <span class="keyword">int</span> <span class="function">findMax</span>(<span class="keyword">int</span> num1, <span class="keyword">int</span> num2);<br><br>
+                    
+                    <span class="keyword">int</span> <span class="function">main</span>() {<br>
+                    &nbsp;&nbsp;<span class="keyword">int</span> a = 10, b = 20, maximum;<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;<span class="comment">// Function call</span><br>
+                    &nbsp;&nbsp;maximum = <span class="function">findMax</span>(a, b);<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"Maximum between %d and %d is %d\n"</span>, a, b, maximum);<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;<span class="keyword">return</span> 0;<br>
+                    }<br><br>
+                    
+                    <span class="comment">// Function definition</span><br>
+                    <span class="keyword">int</span> <span class="function">findMax</span>(<span class="keyword">int</span> num1, <span class="keyword">int</span> num2) {<br>
+                    &nbsp;&nbsp;<span class="keyword">if</span> (num1 > num2) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> num1;<br>
+                    &nbsp;&nbsp;} <span class="keyword">else</span> {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> num2;<br>
+                    &nbsp;&nbsp;}<br>
+                    }
                 </div>
             </div>
         </div>
@@ -652,54 +736,158 @@ void print(...); // Returns nothing</pre>
                 <h2>2. Categories of Functions with Examples</h2>
             </div>
             
+            <p>Functions in C can be categorized based on whether they return a value and whether they accept parameters. Understanding these categories helps in designing efficient and modular programs.</p>
+            
             <div class="function-categories">
                 <div class="function-category">
                     <h3><i class="fas fa-arrow-right"></i> i. With return type but no arguments</h3>
-                    <p>Function returns a value but takes no parameters</p>
+                    <p>These functions return a value but do not accept any parameters. They are useful for getting data or status without external input.</p>
                     <div class="code-container">
-                        <span class="keyword">int</span> getNumber() {<br>
-                        &nbsp;&nbsp;<span class="keyword">return</span> 42;<br>
+                        <span class="comment">// Example: Function that returns a value without parameters</span><br>
+                        <span class="keyword">int</span> <span class="function">getRandomNumber</span>() {<br>
+                        &nbsp;&nbsp;<span class="keyword">return</span> <span class="function">rand</span>() % 100; <span class="comment">// Returns random number between 0-99</span><br>
                         }<br><br>
-                        <span class="comment">// Call: int num = getNumber();</span>
+                        
+                        <span class="comment">// Example: Function to get user input</span><br>
+                        <span class="keyword">int</span> <span class="function">getUserAge</span>() {<br>
+                        &nbsp;&nbsp;<span class="keyword">int</span> age;<br>
+                        &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"Enter your age: "</span>);<br>
+                        &nbsp;&nbsp;<span class="function">scanf</span>(<span class="string">"%d"</span>, &age);<br>
+                        &nbsp;&nbsp;<span class="keyword">return</span> age;<br>
+                        }<br><br>
+                        
+                        <span class="comment">// Call: int random = getRandomNumber();</span><br>
+                        <span class="comment">// Call: int age = getUserAge();</span>
                     </div>
                 </div>
                 
                 <div class="function-category">
                     <h3><i class="fas fa-exchange-alt"></i> ii. With return type with arguments</h3>
-                    <p>Function returns a value and takes parameters</p>
+                    <p>These functions both return a value and accept parameters. They are the most common type, performing calculations or operations on input data.</p>
                     <div class="code-container">
-                        <span class="keyword">int</span> <span class="function">add</span>(<span class="keyword">int</span> a, <span class="keyword">int</span> b) {<br>
-                        &nbsp;&nbsp;<span class="keyword">return</span> a + b;<br>
+                        <span class="comment">// Example: Function with return type and parameters</span><br>
+                        <span class="keyword">float</span> <span class="function">calculateCircleArea</span>(<span class="keyword">float</span> radius) {<br>
+                        &nbsp;&nbsp;<span class="keyword">return</span> 3.14159 * radius * radius;<br>
                         }<br><br>
-                        <span class="comment">// Call: int sum = add(5, 3);</span>
+                        
+                        <span class="comment">// Example: Function to find maximum of three numbers</span><br>
+                        <span class="keyword">int</span> <span class="function">findMaxOfThree</span>(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> c) {<br>
+                        &nbsp;&nbsp;<span class="keyword">if</span> (a >= b && a >= c) <span class="keyword">return</span> a;<br>
+                        &nbsp;&nbsp;<span class="keyword">else</span> <span class="keyword">if</span> (b >= a && b >= c) <span class="keyword">return</span> b;<br>
+                        &nbsp;&nbsp;<span class="keyword">else</span> <span class="keyword">return</span> c;<br>
+                        }<br><br>
+                        
+                        <span class="comment">// Call: float area = calculateCircleArea(5.5);</span><br>
+                        <span class="comment">// Call: int max = findMaxOfThree(10, 25, 15);</span>
                     </div>
                 </div>
                 
                 <div class="function-category">
                     <h3><i class="fas fa-ban"></i> iii. No return type with no arguments</h3>
-                    <p>Function returns nothing and takes no parameters</p>
+                    <p>These functions neither return a value nor accept parameters. They are typically used for displaying information or performing actions without needing input/output.</p>
                     <div class="code-container">
-                        <span class="keyword">void</span> <span class="function">greet</span>() {<br>
-                        &nbsp;&nbsp;printf(<span class="string">"Hello, World!"</span>);<br>
+                        <span class="comment">// Example: Function with no return type and no parameters</span><br>
+                        <span class="keyword">void</span> <span class="function">displayWelcomeMessage</span>() {<br>
+                        &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"************************************\n"</span>);<br>
+                        &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"*                                  *\n"</span>);<br>
+                        &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"*      Welcome to Our Program!      *\n"</span>);<br>
+                        &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"*                                  *\n"</span>);<br>
+                        &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"************************************\n"</span>);<br>
                         }<br><br>
-                        <span class="comment">// Call: greet();</span>
+                        
+                        <span class="comment">// Example: Function to clear screen</span><br>
+                        <span class="keyword">void</span> <span class="function">clearScreen</span>() {<br>
+                        &nbsp;&nbsp;<span class="comment">// System-specific command to clear screen</span><br>
+                        &nbsp;&nbsp;<span class="function">system</span>(<span class="string">"cls"</span>); <span class="comment">// For Windows</span><br>
+                        &nbsp;&nbsp;<span class="comment">// system("clear"); // For Linux/Mac</span><br>
+                        }<br><br>
+                        
+                        <span class="comment">// Call: displayWelcomeMessage();</span><br>
+                        <span class="comment">// Call: clearScreen();</span>
                     </div>
                 </div>
                 
                 <div class="function-category">
                     <h3><i class="fas fa-ban"></i> iv. No return type with arguments</h3>
-                    <p>Function returns nothing but takes parameters</p>
+                    <p>These functions don't return a value but accept parameters. They are used for performing actions that require input but don't need to return data.</p>
                     <div class="code-container">
-                        <span class="keyword">void</span> <span class="function">printSum</span>(<span class="keyword">int</span> a, <span class="keyword">int</span> b) {<br>
-                        &nbsp;&nbsp;printf(<span class="string">"Sum: %d"</span>, a + b);<br>
+                        <span class="comment">// Example: Function with no return type but with parameters</span><br>
+                        <span class="keyword">void</span> <span class="function">printMultiplicationTable</span>(<span class="keyword">int</span> num) {<br>
+                        &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"Multiplication table for %d:\n"</span>, num);<br>
+                        &nbsp;&nbsp;<span class="keyword">for</span> (<span class="keyword">int</span> i = 1; i <= 10; i++) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"%d x %d = %d\n"</span>, num, i, num * i);<br>
+                        &nbsp;&nbsp;}<br>
                         }<br><br>
-                        <span class="comment">// Call: printSum(5, 3);</span>
+                        
+                        <span class="comment">// Example: Function to display student details</span><br>
+                        <span class="keyword">void</span> <span class="function">displayStudentInfo</span>(<span class="keyword">char</span> name[], <span class="keyword">int</span> age, <span class="keyword">float</span> gpa) {<br>
+                        &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"Student Name: %s\n"</span>, name);<br>
+                        &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"Age: %d\n"</span>, age);<br>
+                        &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"GPA: %.2f\n"</span>, gpa);<br>
+                        }<br><br>
+                        
+                        <span class="comment">// Call: printMultiplicationTable(7);</span><br>
+                        <span class="comment">// Call: displayStudentInfo("John Doe", 20, 3.75);</span>
                     </div>
+                </div>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-code"></i> Complete Program Example</h3>
+                <div class="code-container">
+                    <span class="comment">// Program demonstrating all function categories</span><br>
+                    <span class="keyword">#include</span> <span class="string">&lt;stdio.h></span><br>
+                    <span class="keyword">#include</span> <span class="string">&lt;stdlib.h></span><br>
+                    <span class="keyword">#include</span> <span class="string">&lt;time.h></span><br><br>
+                    
+                    <span class="comment">// Function prototypes</span><br>
+                    <span class="keyword">int</span> <span class="function">getRandomNumber</span>(); <span class="comment">// Category 1</span><br>
+                    <span class="keyword">float</span> <span class="function">calculateAverage</span>(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> c); <span class="comment">// Category 2</span><br>
+                    <span class="keyword">void</span> <span class="function">displayHeader</span>(); <span class="comment">// Category 3</span><br>
+                    <span class="keyword">void</span> <span class="function">printSquare</span>(<span class="keyword">int</span> num); <span class="comment">// Category 4</span><br><br>
+                    
+                    <span class="keyword">int</span> <span class="function">main</span>() {<br>
+                    &nbsp;&nbsp;<span class="function">srand</span>(<span class="function">time</span>(0)); <span class="comment">// Seed random number generator</span><br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;<span class="function">displayHeader</span>(); <span class="comment">// Category 3 function call</span><br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;<span class="keyword">int</span> random = <span class="function">getRandomNumber</span>(); <span class="comment">// Category 1 function call</span><br>
+                    &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"Random number: %d\n"</span>, random);<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;<span class="function">printSquare</span>(random); <span class="comment">// Category 4 function call</span><br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;<span class="keyword">float</span> avg = <span class="function">calculateAverage</span>(10, 20, 30); <span class="comment">// Category 2 function call</span><br>
+                    &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"Average of 10, 20, 30: %.2f\n"</span>, avg);<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;<span class="keyword">return</span> 0;<br>
+                    }<br><br>
+                    
+                    <span class="comment">// Category 1: With return type but no arguments</span><br>
+                    <span class="keyword">int</span> <span class="function">getRandomNumber</span>() {<br>
+                    &nbsp;&nbsp;<span class="keyword">return</span> <span class="function">rand</span>() % 100 + 1; <span class="comment">// Returns random number between 1-100</span><br>
+                    }<br><br>
+                    
+                    <span class="comment">// Category 2: With return type with arguments</span><br>
+                    <span class="keyword">float</span> <span class="function">calculateAverage</span>(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> c) {<br>
+                    &nbsp;&nbsp;<span class="keyword">return</span> (a + b + c) / 3.0;<br>
+                    }<br><br>
+                    
+                    <span class="comment">// Category 3: No return type with no arguments</span><br>
+                    <span class="keyword">void</span> <span class="function">displayHeader</span>() {<br>
+                    &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"====================================\n"</span>);<br>
+                    &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"         FUNCTION DEMONSTRATION       \n"</span>);<br>
+                    &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"====================================\n"</span>);<br>
+                    }<br><br>
+                    
+                    <span class="comment">// Category 4: No return type with arguments</span><br>
+                    <span class="keyword">void</span> <span class="function">printSquare</span>(<span class="keyword">int</span> num) {<br>
+                    &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"Square of %d is %d\n"</span>, num, num * num);<br>
+                    }
                 </div>
             </div>
         </div>
         
-        <!-- 3. Storage Classes -->
+               <!-- 3. Storage Classes -->
         <div class="content-section">
             <div class="section-title">
                 <i class="fas fa-database"></i>
@@ -851,6 +1039,55 @@ void print(...); // Returns nothing</pre>
                     <span class="comment">// Call: int fib = fibonacci(6); // 8</span>
                 </div>
             </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-sort-amount-down"></i> Example: Tower of Hanoi</h3>
+                <div class="code-container">
+                    <span class="keyword">void</span> <span class="function">towerOfHanoi</span>(<span class="keyword">int</span> n, <span class="keyword">char</span> from_rod, <span class="keyword">char</span> to_rod, <span class="keyword">char</span> aux_rod) {<br>
+                    &nbsp;&nbsp;<span class="keyword">if</span> (n == 1) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"Move disk 1 from rod %c to rod %c\n"</span>, from_rod, to_rod);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span>;<br>
+                    &nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;<span class="function">towerOfHanoi</span>(n - 1, from_rod, aux_rod, to_rod);<br>
+                    &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"Move disk %d from rod %c to rod %c\n"</span>, n, from_rod, to_rod);<br>
+                    &nbsp;&nbsp;<span class="function">towerOfHanoi</span>(n - 1, aux_rod, to_rod, from_rod);<br>
+                    }<br><br>
+                    
+                    <span class="comment">// Call: towerOfHanoi(3, 'A', 'C', 'B');</span>
+                </div>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-exclamation-triangle"></i> Advantages and Disadvantages</h3>
+                <div class="table-container">
+                    <table class="content-table">
+                        <thead>
+                            <tr>
+                                <th>Advantages</th>
+                                <th>Disadvantages</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Elegant solution for problems with recursive nature</td>
+                                <td>May use more memory due to function call stack</td>
+                            </tr>
+                            <tr>
+                                <td>Reduces code length for certain problems</td>
+                                <td>Can be slower than iterative solutions</td>
+                            </tr>
+                            <tr>
+                                <td>Easier to write and understand for some problems</td>
+                                <td>Risk of stack overflow for deep recursion</td>
+                            </tr>
+                            <tr>
+                                <td>Direct implementation of mathematical definitions</td>
+                                <td>Harder to debug for beginners</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
         
         <!-- 5. Passing Arrays to Functions -->
@@ -870,6 +1107,7 @@ void print(...); // Returns nothing</pre>
                     &nbsp;&nbsp;<span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i < size; i++) {<br>
                     &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"%d "</span>, arr[i]);<br>
                     &nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"\n"</span>);<br>
                     }<br><br>
                     
                     <span class="keyword">int</span> <span class="function">main</span>() {<br>
@@ -919,6 +1157,39 @@ void print(...); // Returns nothing</pre>
                     }
                 </div>
             </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-calculator"></i> Example 4: Array Operations</h3>
+                <div class="code-container">
+                    <span class="comment">// Function to find sum of array elements</span><br>
+                    <span class="keyword">int</span> <span class="function">arraySum</span>(<span class="keyword">int</span> arr[], <span class="keyword">int</span> size) {<br>
+                    &nbsp;&nbsp;<span class="keyword">int</span> sum = 0;<br>
+                    &nbsp;&nbsp;<span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i < size; i++) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;sum += arr[i];<br>
+                    &nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;<span class="keyword">return</span> sum;<br>
+                    }<br><br>
+                    
+                    <span class="comment">// Function to find maximum element</span><br>
+                    <span class="keyword">int</span> <span class="function">findMax</span>(<span class="keyword">int</span> arr[], <span class="keyword">int</span> size) {<br>
+                    &nbsp;&nbsp;<span class="keyword">int</span> max = arr[0];<br>
+                    &nbsp;&nbsp;<span class="keyword">for</span> (<span class="keyword">int</span> i = 1; i < size; i++) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> (arr[i] > max) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max = arr[i];<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;<span class="keyword">return</span> max;<br>
+                    }<br><br>
+                    
+                    <span class="keyword">int</span> <span class="function">main</span>() {<br>
+                    &nbsp;&nbsp;<span class="keyword">int</span> values[] = {5, 2, 9, 1, 7};<br>
+                    &nbsp;&nbsp;<span class="keyword">int</span> total = <span class="function">arraySum</span>(values, 5);<br>
+                    &nbsp;&nbsp;<span class="keyword">int</span> maximum = <span class="function">findMax</span>(values, 5);<br>
+                    &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"Sum: %d, Max: %d\n"</span>, total, maximum);<br>
+                    &nbsp;&nbsp;<span class="keyword">return</span> 0;<br>
+                    }
+                </div>
+            </div>
         </div>
 
         <!-- 6. Structures and Unions -->
@@ -946,7 +1217,7 @@ void print(...); // Returns nothing</pre>
                     
                     <span class="comment">// Accessing structure members</span><br>
                     s1.id = 101;<br>
-                    strcpy(s1.name, "John Doe");<br>
+                    <span class="function">strcpy</span>(s1.name, "John Doe");<br>
                     s1.marks = 85.5;
                 </div>
             </div>
@@ -1003,6 +1274,69 @@ void print(...); // Returns nothing</pre>
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-code"></i> Example: Nested Structures</h3>
+                <div class="code-container">
+                    <span class="comment">// Defining nested structures</span><br>
+                    <span class="keyword">struct</span> Address {<br>
+                    &nbsp;&nbsp;<span class="keyword">char</span> city[50];<br>
+                    &nbsp;&nbsp;<span class="keyword">char</span> state[50];<br>
+                    &nbsp;&nbsp;<span class="keyword">int</span> pincode;<br>
+                    };<br><br>
+                    
+                    <span class="keyword">struct</span> Employee {<br>
+                    &nbsp;&nbsp;<span class="keyword">int</span> id;<br>
+                    &nbsp;&nbsp;<span class="keyword">char</span> name[50];<br>
+                    &nbsp;&nbsp;<span class="keyword">float</span> salary;<br>
+                    &nbsp;&nbsp;<span class="keyword">struct</span> Address addr;<br>
+                    };<br><br>
+                    
+                    <span class="comment">// Creating and accessing nested structure</span><br>
+                    <span class="keyword">struct</span> Employee emp1;<br>
+                    emp1.id = 101;<br>
+                    <span class="function">strcpy</span>(emp1.name, "John Doe");<br>
+                    emp1.salary = 50000.0;<br>
+                    <span class="function">strcpy</span>(emp1.addr.city, "New York");<br>
+                    <span class="function">strcpy</span>(emp1.addr.state, "NY");<br>
+                    emp1.addr.pincode = 10001;
+                </div>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-code"></i> Example: Array of Structures</h3>
+                <div class="code-container">
+                    <span class="comment">// Array of structures</span><br>
+                    <span class="keyword">struct</span> Student {<br>
+                    &nbsp;&nbsp;<span class="keyword">int</span> id;<br>
+                    &nbsp;&nbsp;<span class="keyword">char</span> name[50];<br>
+                    &nbsp;&nbsp;<span class="keyword">float</span> marks;<br>
+                    };<br><br>
+                    
+                    <span class="keyword">int</span> <span class="function">main</span>() {<br>
+                    &nbsp;&nbsp;<span class="keyword">struct</span> Student class[5];<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;<span class="comment">// Input data for 5 students</span><br>
+                    &nbsp;&nbsp;<span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i < 5; i++) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"Enter details for student %d:\n"</span>, i+1);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"ID: "</span>);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">scanf</span>(<span class="string">"%d"</span>, &class[i].id);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"Name: "</span>);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">scanf</span>(<span class="string">"%s"</span>, class[i].name);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"Marks: "</span>);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">scanf</span>(<span class="string">"%f"</span>, &class[i].marks);<br>
+                    &nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;<span class="comment">// Display student details</span><br>
+                    &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"\nStudent Details:\n"</span>);<br>
+                    &nbsp;&nbsp;<span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i < 5; i++) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"ID: %d, Name: %s, Marks: %.2f\n"</span>, <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class[i].id, class[i].name, class[i].marks);<br>
+                    &nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;<span class="keyword">return</span> 0;<br>
+                    }
+                </div>
             </div>
         </div>
 
@@ -1080,6 +1414,48 @@ void print(...); // Returns nothing</pre>
                     <span class="comment">// Accessing structure members using pointer</span><br>
                     <span class="function">printf</span>(<span class="string">"ID: %d\n"</span>, (*ptr).id); <span class="comment">// Method 1</span><br>
                     <span class="function">printf</span>(<span class="string">"Name: %s\n"</span>, ptr->name); <span class="comment">// Method 2 (arrow operator)</span>
+                </div>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-code"></i> Example: Dynamic Memory Allocation</h3>
+                <div class="code-container">
+                    <span class="keyword">#include</span> <span class="string">&lt;stdio.h></span><br>
+                    <span class="keyword">#include</span> <span class="string">&lt;stdlib.h></span><br><br>
+                    
+                    <span class="keyword">int</span> <span class="function">main</span>() {<br>
+                    &nbsp;&nbsp;<span class="keyword">int</span> n, i;<br>
+                    &nbsp;&nbsp;<span class="keyword">int</span> *arr;<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"Enter the number of elements: "</span>);<br>
+                    &nbsp;&nbsp;<span class="function">scanf</span>(<span class="string">"%d"</span>, &n);<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;<span class="comment">// Dynamically allocate memory</span><br>
+                    &nbsp;&nbsp;arr = (<span class="keyword">int</span>*)<span class="function">malloc</span>(n * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;<span class="keyword">if</span> (arr == NULL) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"Memory allocation failed!\n"</span>);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> 1;<br>
+                    &nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;<span class="comment">// Input elements</span><br>
+                    &nbsp;&nbsp;<span class="keyword">for</span> (i = 0; i < n; i++) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"Enter element %d: "</span>, i+1);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">scanf</span>(<span class="string">"%d"</span>, &arr[i]);<br>
+                    &nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;<span class="comment">// Display elements</span><br>
+                    &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"Array elements: "</span>);<br>
+                    &nbsp;&nbsp;<span class="keyword">for</span> (i = 0; i < n; i++) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"%d "</span>, arr[i]);<br>
+                    &nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"\n"</span>);<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;<span class="comment">// Free allocated memory</span><br>
+                    &nbsp;&nbsp;<span class="function">free</span>(arr);<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;<span class="keyword">return</span> 0;<br>
+                    }
                 </div>
             </div>
         </div>
@@ -1194,6 +1570,43 @@ void print(...); // Returns nothing</pre>
                     <span class="function">rewind</span>(filePointer);
                 </div>
             </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-code"></i> Example: File Copy Program</h3>
+                <div class="code-container">
+                    <span class="keyword">#include</span> <span class="string">&lt;stdio.h></span><br><br>
+                    
+                    <span class="keyword">int</span> <span class="function">main</span>() {<br>
+                    &nbsp;&nbsp;FILE *source, *target;<br>
+                    &nbsp;&nbsp;<span class="keyword">char</span> ch;<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;source = <span class="function">fopen</span>(<span class="string">"source.txt"</span>, <span class="string">"r"</span>);<br>
+                    &nbsp;&nbsp;<span class="keyword">if</span> (source == NULL) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"Cannot open source file\n"</span>);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> 1;<br>
+                    &nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;target = <span class="function">fopen</span>(<span class="string">"target.txt"</span>, <span class="string">"w"</span>);<br>
+                    &nbsp;&nbsp;<span class="keyword">if</span> (target == NULL) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">fclose</span>(source);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"Cannot open target file\n"</span>);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> 1;<br>
+                    &nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;<span class="comment">// Copy file character by character</span><br>
+                    &nbsp;&nbsp;<span class="keyword">while</span> ((ch = <span class="function">fgetc</span>(source)) != EOF) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">fputc</span>(ch, target);<br>
+                    &nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"File copied successfully\n"</span>);<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;<span class="function">fclose</span>(source);<br>
+                    &nbsp;&nbsp;<span class="function">fclose</span>(target);<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;<span class="keyword">return</span> 0;<br>
+                    }
+                </div>
+            </div>
         </div>
 
         <!-- 9. Typedef Keyword -->
@@ -1263,7 +1676,40 @@ void print(...); // Returns nothing</pre>
                     <li>Makes code easier to modify and maintain</li>
                 </ul>
             </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-code"></i> Example: Using Typedef with Function Pointers</h3>
+                <div class="code-container">
+                    <span class="comment">// Typedef for function pointer</span><br>
+                    <span class="keyword">typedef</span> <span class="keyword">int</span> (*Operation)(<span class="keyword">int</span>, <span class="keyword">int</span>);<br><br>
+                    
+                    <span class="comment">// Some operations</span><br>
+                    <span class="keyword">int</span> <span class="function">add</span>(<span class="keyword">int</span> a, <span class="keyword">int</span> b) { <span class="keyword">return</span> a + b; }<br>
+                    <span class="keyword">int</span> <span class="function">subtract</span>(<span class="keyword">int</span> a, <span class="keyword">int</span> b) { <span class="keyword">return</span> a - b; }<br>
+                    <span class="keyword">int</span> <span class="function">multiply</span>(<span class="keyword">int</span> a, <span class="keyword">int</span> b) { <span class="keyword">return</span> a * b; }<br><br>
+                    
+                    <span class="keyword">int</span> <span class="function">main</span>() {<br>
+                    &nbsp;&nbsp;Operation op; <span class="comment">// Function pointer variable</span><br>
+                    &nbsp;&nbsp;<span class="keyword">int</span> x = 10, y = 5, result;<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;op = add;<br>
+                    &nbsp;&nbsp;result = <span class="function">op</span>(x, y);<br>
+                    &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"Addition: %d\n"</span>, result);<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;op = subtract;<br>
+                    &nbsp;&nbsp;result = <span class="function">op</span>(x, y);<br>
+                    &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"Subtraction: %d\n"</span>, result);<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;op = multiply;<br>
+                    &nbsp;&nbsp;result = <span class="function">op</span>(x, y);<br>
+                    &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"Multiplication: %d\n"</span>, result);<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;<span class="keyword">return</span> 0;<br>
+                    }
+                </div>
+            </div>
         </div>
+        
     </div>
     
     <footer>
