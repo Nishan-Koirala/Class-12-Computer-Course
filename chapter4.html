@@ -920,6 +920,350 @@ void print(...); // Returns nothing</pre>
                 </div>
             </div>
         </div>
+
+        <!-- 6. Structures and Unions -->
+        <div class="content-section">
+            <div class="section-title">
+                <i class="fas fa-cube"></i>
+                <h2>6. Structures and Unions</h2>
+            </div>
+            
+            <p>Structures and unions are user-defined data types that allow grouping of variables of different types under a single name.</p>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-sitemap"></i> a. Structures</h3>
+                <p>A structure is a collection of variables of different types under a single name. Each element in a structure is called a member.</p>
+                <div class="code-container">
+                    <span class="comment">// Defining a structure</span><br>
+                    <span class="keyword">struct</span> Student {<br>
+                    &nbsp;&nbsp;<span class="keyword">int</span> id;<br>
+                    &nbsp;&nbsp;<span class="keyword">char</span> name[50];<br>
+                    &nbsp;&nbsp;<span class="keyword">float</span> marks;<br>
+                    };<br><br>
+                    
+                    <span class="comment">// Declaring structure variable</span><br>
+                    <span class="keyword">struct</span> Student s1;<br><br>
+                    
+                    <span class="comment">// Accessing structure members</span><br>
+                    s1.id = 101;<br>
+                    strcpy(s1.name, "John Doe");<br>
+                    s1.marks = 85.5;
+                </div>
+            </div>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-object-group"></i> b. Unions</h3>
+                <p>A union is similar to a structure but all members share the same memory location. Only one member can contain a value at any given time.</p>
+                <div class="code-container">
+                    <span class="comment">// Defining a union</span><br>
+                    <span class="keyword">union</span> Data {<br>
+                    &nbsp;&nbsp;<span class="keyword">int</span> i;<br>
+                    &nbsp;&nbsp;<span class="keyword">float</span> f;<br>
+                    &nbsp;&nbsp;<span class="keyword">char</span> str[20];<br>
+                    };<br><br>
+                    
+                    <span class="comment">// Declaring union variable</span><br>
+                    <span class="keyword">union</span> Data data;<br><br>
+                    
+                    <span class="comment">// Only one member can hold a value at a time</span><br>
+                    data.i = 10;<br>
+                    <span class="comment">// data.f and data.str will not contain valid values now</span>
+                </div>
+            </div>
+            
+            <div class="table-container">
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Structure</th>
+                            <th>Union</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Memory Allocation</td>
+                            <td>Each member has its own memory</td>
+                            <td>All members share the same memory</td>
+                        </tr>
+                        <tr>
+                            <td>Size</td>
+                            <td>Sum of sizes of all members</td>
+                            <td>Size of the largest member</td>
+                        </tr>
+                        <tr>
+                            <td>Access</td>
+                            <td>All members can be accessed at any time</td>
+                            <td>Only one member can be accessed at a time</td>
+                        </tr>
+                        <tr>
+                            <td>Use Case</td>
+                            <td>When you need to store different types of data together</td>
+                            <td>When you need to store only one of many data types</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 7. Pointers -->
+        <div class="content-section">
+            <div class="section-title">
+                <i class="fas fa-location-arrow"></i>
+                <h2>7. Pointers</h2>
+            </div>
+            
+            <p>Pointers are variables that store memory addresses. They provide powerful capabilities for memory management and efficient data manipulation.</p>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-map-marker-alt"></i> a. Pointer Basics</h3>
+                <p>A pointer is a variable that stores the address of another variable. The address-of operator (&) returns the address of a variable, and the dereference operator (*) accesses the value at a pointer's address.</p>
+                <div class="code-container">
+                    <span class="keyword">int</span> var = 10;<br>
+                    <span class="keyword">int</span> *ptr; <span class="comment">// Pointer declaration</span><br>
+                    ptr = &var; <span class="comment">// Assigning address to pointer</span><br><br>
+                    
+                    <span class="function">printf</span>(<span class="string">"Value of var: %d\n"</span>, var); <span class="comment">// Output: 10</span><br>
+                    <span class="function">printf</span>(<span class="string">"Address of var: %p\n"</span>, &var); <span class="comment">// Output: address</span><br>
+                    <span class="function">printf</span>(<span class="string">"Value of ptr: %p\n"</span>, ptr); <span class="comment">// Output: address of var</span><br>
+                    <span class="function">printf</span>(<span class="string">"Value at ptr: %d\n"</span>, *ptr); <span class="comment">// Output: 10</span>
+                </div>
+            </div>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-exchange-alt"></i> b. Pointers and Functions</h3>
+                <p>Pointers can be used to pass variables by reference to functions, allowing functions to modify the original variables.</p>
+                <div class="code-container">
+                    <span class="comment">// Function to swap values using pointers</span><br>
+                    <span class="keyword">void</span> <span class="function">swap</span>(<span class="keyword">int</span> *a, <span class="keyword">int</span> *b) {<br>
+                    &nbsp;&nbsp;<span class="keyword">int</span> temp = *a;<br>
+                    &nbsp;&nbsp;*a = *b;<br>
+                    &nbsp;&nbsp;*b = temp;<br>
+                    }<br><br>
+                    
+                    <span class="keyword">int</span> <span class="function">main</span>() {<br>
+                    &nbsp;&nbsp;<span class="keyword">int</span> x = 5, y = 10;<br>
+                    &nbsp;&nbsp;<span class="function">swap</span>(&x, &y);<br>
+                    &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"x = %d, y = %d"</span>, x, y); <span class="comment">// Output: x = 10, y = 5</span><br>
+                    &nbsp;&nbsp;<span class="keyword">return</span> 0;<br>
+                    }
+                </div>
+            </div>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-project-diagram"></i> c. Pointers and Arrays</h3>
+                <p>Pointers and arrays are closely related. The name of an array is a pointer to its first element.</p>
+                <div class="code-container">
+                    <span class="keyword">int</span> arr[5] = {1, 2, 3, 4, 5};<br>
+                    <span class="keyword">int</span> *ptr = arr; <span class="comment">// Points to first element</span><br><br>
+                    
+                    <span class="comment">// Different ways to access array elements</span><br>
+                    <span class="function">printf</span>(<span class="string">"First element: %d\n"</span>, arr[0]);<br>
+                    <span class="function">printf</span>(<span class="string">"First element: %d\n"</span>, *ptr);<br>
+                    <span class="function">printf</span>(<span class="string">"Second element: %d\n"</span>, *(ptr + 1));<br>
+                    <span class="function">printf</span>(<span class="string">"Third element: %d\n"</span>, ptr[2]);
+                </div>
+            </div>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-cubes"></i> d. Pointers to Structures</h3>
+                <p>Pointers can be used with structures to efficiently access and manipulate structure variables.</p>
+                <div class="code-container">
+                    <span class="keyword">struct</span> Student {<br>
+                    &nbsp;&nbsp;<span class="keyword">int</span> id;<br>
+                    &nbsp;&nbsp;<span class="keyword">char</span> name[50];<br>
+                    };<br><br>
+                    
+                    <span class="keyword">struct</span> Student s1 = {101, "John"};<br>
+                    <span class="keyword">struct</span> Student *ptr = &s1;<br><br>
+                    
+                    <span class="comment">// Accessing structure members using pointer</span><br>
+                    <span class="function">printf</span>(<span class="string">"ID: %d\n"</span>, (*ptr).id); <span class="comment">// Method 1</span><br>
+                    <span class="function">printf</span>(<span class="string">"Name: %s\n"</span>, ptr->name); <span class="comment">// Method 2 (arrow operator)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. File Handling -->
+        <div class="content-section">
+            <div class="section-title">
+                <i class="fas fa-file"></i>
+                <h2>8. File Handling</h2>
+            </div>
+            
+            <p>File handling in C allows programs to store and retrieve data from files, enabling persistent data storage.</p>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-folder-open"></i> a. File Operations</h3>
+                <p>The basic file operations include opening, reading, writing, and closing files. The FILE structure is used to represent a file stream.</p>
+                <div class="code-container">
+                    <span class="comment">// Basic file operations</span><br>
+                    FILE *filePointer;<br><br>
+                    
+                    <span class="comment">// Opening a file</span><br>
+                    filePointer = <span class="function">fopen</span>(<span class="string">"filename.txt"</span>, <span class="string">"mode"</span>);<br><br>
+                    
+                    <span class="comment">// Checking if file opened successfully</span><br>
+                    <span class="keyword">if</span> (filePointer == NULL) {<br>
+                    &nbsp;&nbsp;<span class="function">printf</span>(<span class="string">"File could not be opened\n"</span>);<br>
+                    &nbsp;&nbsp;<span class="keyword">return</span> 1;<br>
+                    }<br><br>
+                    
+                    <span class="comment">// File operations (read/write)</span><br>
+                    <span class="comment">// ...</span><br><br>
+                    
+                    <span class="comment">// Closing the file</span><br>
+                    <span class="function">fclose</span>(filePointer);
+                </div>
+            </div>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-list-alt"></i> b. File Modes</h3>
+                <p>Different file modes determine how a file is opened and what operations can be performed on it.</p>
+                <div class="table-container">
+                    <table class="content-table">
+                        <thead>
+                            <tr>
+                                <th>Mode</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>"r"</td>
+                                <td>Open for reading (file must exist)</td>
+                            </tr>
+                            <tr>
+                                <td>"w"</td>
+                                <td>Open for writing (creates new file or truncates existing)</td>
+                            </tr>
+                            <tr>
+                                <td>"a"</td>
+                                <td>Open for appending (creates new file if doesn't exist)</td>
+                            </tr>
+                            <tr>
+                                <td>"r+"</td>
+                                <td>Open for reading and writing (file must exist)</td>
+                            </tr>
+                            <tr>
+                                <td>"w+"</td>
+                                <td>Open for reading and writing (creates new file or truncates existing)</td>
+                            </tr>
+                            <tr>
+                                <td>"a+"</td>
+                                <td>Open for reading and appending (creates new file if doesn't exist)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-tasks"></i> c. File Functions</h3>
+                <p>C provides various functions for reading from and writing to files.</p>
+                <div class="code-container">
+                    <span class="comment">// Writing to a file</span><br>
+                    <span class="function">fprintf</span>(filePointer, <span class="string">"Hello, World!\n"</span>);<br>
+                    <span class="function">fputs</span>(<span class="string">"This is a line\n"</span>, filePointer);<br><br>
+                    
+                    <span class="comment">// Reading from a file</span><br>
+                    <span class="keyword">char</span> buffer[100];<br>
+                    <span class="function">fgets</span>(buffer, 100, filePointer); <span class="comment">// Read a line</span><br>
+                    <span class="function">fscanf</span>(filePointer, <span class="string">"%s"</span>, buffer); <span class="comment">// Read a word</span><br><br>
+                    
+                    <span class="comment">// Character I/O</span><br>
+                    <span class="function">fputc</span>(<span class="string">'A'</span>, filePointer); <span class="comment">// Write a character</span><br>
+                    <span class="keyword">char</span> ch = <span class="function">fgetc</span>(filePointer); <span class="comment">// Read a character</span>
+                </div>
+            </div>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-random"></i> d. Random Access Files</h3>
+                <p>C allows random access to files using functions like fseek(), ftell(), and rewind().</p>
+                <div class="code-container">
+                    <span class="comment">// Moving file pointer to specific position</span><br>
+                    <span class="function">fseek</span>(filePointer, 10, SEEK_SET); <span class="comment">// Move to 10th byte from beginning</span><br>
+                    <span class="function">fseek</span>(filePointer, -5, SEEK_CUR); <span class="comment">// Move 5 bytes back from current position</span><br>
+                    <span class="function">fseek</span>(filePointer, -20, SEEK_END); <span class="comment">// Move to 20th byte from end</span><br><br>
+                    
+                    <span class="comment">// Getting current position</span><br>
+                    <span class="keyword">long</span> position = <span class="function">ftell</span>(filePointer);<br>
+                    <span class="function">printf</span>(<span class="string">"Current position: %ld\n"</span>, position);<br><br>
+                    
+                    <span class="comment">// Moving to beginning of file</span><br>
+                    <span class="function">rewind</span>(filePointer);
+                </div>
+            </div>
+        </div>
+
+        <!-- 9. Typedef Keyword -->
+        <div class="content-section">
+            <div class="section-title">
+                <i class="fas fa-tag"></i>
+                <h2>9. Typedef Keyword</h2>
+            </div>
+            
+            <p>The typedef keyword is used to create aliases for existing data types, making code more readable and manageable.</p>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-signature"></i> a. Basic Typedef Usage</h3>
+                <p>typedef can be used to create shorter or more meaningful names for existing data types.</p>
+                <div class="code-container">
+                    <span class="comment">// Creating alias for existing data types</span><br>
+                    <span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">int</span> ULINT;<br>
+                    <span class="keyword">typedef</span> <span class="keyword">float</span> REAL;<br><br>
+                    
+                    <span class="comment">// Using the aliases</span><br>
+                    ULINT distance = 1000000;<br>
+                    REAL pi = 3.14159;
+                </div>
+            </div>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-sitemap"></i> b. Typedef with Structures</h3>
+                <p>typedef is commonly used with structures to avoid using the "struct" keyword repeatedly.</p>
+                <div class="code-container">
+                    <span class="comment">// Without typedef</span><br>
+                    <span class="keyword">struct</span> Point {<br>
+                    &nbsp;&nbsp;<span class="keyword">int</span> x;<br>
+                    &nbsp;&nbsp;<span class="keyword">int</span> y;<br>
+                    };<br>
+                    <span class="keyword">struct</span> Point p1; <span class="comment">// Need to use 'struct' keyword</span><br><br>
+                    
+                    <span class="comment">// With typedef</span><br>
+                    <span class="keyword">typedef</span> <span class="keyword">struct</span> {<br>
+                    &nbsp;&nbsp;<span class="keyword">int</span> x;<br>
+                    &nbsp;&nbsp;<span class="keyword">int</span> y;<br>
+                    } Point;<br>
+                    Point p2; <span class="comment">// No need for 'struct' keyword</span>
+                </div>
+            </div>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-project-diagram"></i> c. Typedef with Pointers</h3>
+                <p>typedef can be used with pointers to create more readable pointer type definitions.</p>
+                <div class="code-container">
+                    <span class="comment">// Creating a pointer type</span><br>
+                    <span class="keyword">typedef</span> <span class="keyword">int</span>* IntPtr;<br><br>
+                    
+                    <span class="comment">// Using the pointer type</span><br>
+                    <span class="keyword">int</span> a = 10, b = 20;<br>
+                    IntPtr ptr1 = &a, ptr2 = &b;<br><br>
+                    
+                    <span class="function">printf</span>(<span class="string">"Values: %d, %d\n"</span>, *ptr1, *ptr2);
+                </div>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-check-circle"></i> Advantages of Typedef</h3>
+                <ul>
+                    <li>Makes code more readable and understandable</li>
+                    <li>Simplifies complex type declarations</li>
+                    <li>Provides abstraction from implementation details</li>
+                    <li>Makes code easier to modify and maintain</li>
+                </ul>
+            </div>
+        </div>
     </div>
     
     <footer>
