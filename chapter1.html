@@ -707,11 +707,13 @@
             <div class="definition-box">
                 <h3><i class="fas fa-database"></i> Data</h3>
                 <p>Raw facts and figures without any inherent meaning. Examples include numbers, text, images, and symbols that haven't been processed or interpreted.</p>
+                <p><strong>Examples:</strong> 101, Nishan, 85, Kathmandu - these values are meaningless without context.</p>
             </div>
             
             <div class="definition-box">
                 <h3><i class="fas fa-chart-line"></i> Information</h3>
                 <p>Data that has been processed, organized, and structured to become meaningful and useful for decision-making. Information provides context and enables knowledge.</p>
+                <p><strong>Example:</strong> "Student Nishan scored 85 marks in Database subject at Kathmandu University."</p>
             </div>
             
             <div class="key-points">
@@ -723,6 +725,7 @@
                     <li><strong>Timeliness:</strong> Information must be current and available when needed for decision-making.</li>
                     <li><strong>Consistency:</strong> Information should be uniform and reliable across different sources and time periods.</li>
                     <li><strong>Accessibility:</strong> Information should be easily obtainable by authorized users when required.</li>
+                    <li><strong>Conciseness:</strong> Information should be presented in a clear, condensed format without unnecessary details.</li>
                 </ul>
             </div>
         </div>
@@ -736,12 +739,25 @@
             
             <p>A database is an organized collection of structured data stored electronically in a computer system. Databases are designed to efficiently manage large volumes of data while ensuring integrity and security.</p>
             
+            <div class="definition-box">
+                <h3><i class="fas fa-database"></i> Purpose of Databases</h3>
+                <ul>
+                    <li>To store data efficiently in an organized manner</li>
+                    <li>To reduce data redundancy (minimize duplicate data)</li>
+                    <li>To ensure data consistency and integrity across applications</li>
+                    <li>To allow easy data sharing among multiple users and applications</li>
+                    <li>To secure data from unauthorized access and manipulation</li>
+                    <li>To enable fast and accurate data retrieval through query optimization</li>
+                    <li>To maintain data independence between applications and physical storage</li>
+                </ul>
+            </div>
+            
             <div class="key-points">
                 <h3><i class="fas fa-table"></i> Core Concepts</h3>
                 <ul>
                     <li><strong>Tables:</strong> The primary structure for storing data in a relational database, consisting of rows and columns.</li>
-                    <li><strong>Fields (Columns):</strong> Represent specific attributes or characteristics of the data being stored.</li>
-                    <li><strong>Records (Rows):</strong> Individual entries in a table that contain specific data values for each field.</li>
+                    <li><strong>Fields (Columns/Attributes):</strong> Represent specific attributes or characteristics of the data being stored.</li>
+                    <li><strong>Records (Rows/Tuples):</strong> Individual entries in a table that contain specific data values for each field.</li>
                     <li><strong>Tuples:</strong> A technical term for a row or record in a database table.</li>
                     <li><strong>Objects:</strong> In object-oriented databases, entities that combine data and associated behaviors.</li>
                     <li><strong>Keys:</strong> Special fields that establish relationships between tables and ensure data integrity.</li>
@@ -774,8 +790,163 @@
                             <td>A primary key consisting of multiple columns</td>
                             <td>OrderID + ProductID in OrderDetails</td>
                         </tr>
+                        <tr>
+                            <td>Candidate Key</td>
+                            <td>A field that can qualify as a primary key</td>
+                            <td>Email or SSN in a Users table</td>
+                        </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+        
+        <!-- Data Types Section -->
+        <div class="content-section">
+            <div class="section-title">
+                <i class="fas fa-list-alt"></i>
+                <h2>Data Types</h2>
+            </div>
+            
+            <p>Data types define the kind of data that can be stored in a database column. Choosing appropriate data types is essential for data integrity, storage efficiency, and performance optimization.</p>
+            
+            <div class="table-container">
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Data Type</th>
+                            <th>Description</th>
+                            <th>Example</th>
+                            <th>Size</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>INT/INTEGER</td>
+                            <td>Whole numbers without decimals</td>
+                            <td>25, -103, 4567</td>
+                            <td>4 bytes</td>
+                        </tr>
+                        <tr>
+                            <td>FLOAT/REAL</td>
+                            <td>Floating-point numbers with decimals</td>
+                            <td>3.14, -0.5, 123.456</td>
+                            <td>4-8 bytes</td>
+                        </tr>
+                        <tr>
+                            <td>CHAR(n)</td>
+                            <td>Fixed-length character strings</td>
+                            <td>'ABC', 'X'</td>
+                            <td>n bytes (1-255)</td>
+                        </tr>
+                        <tr>
+                            <td>VARCHAR(n)</td>
+                            <td>Variable-length character strings</td>
+                            <td>'Hello', 'Database'</td>
+                            <td>Length + 1 byte</td>
+                        </tr>
+                        <tr>
+                            <td>DATE</td>
+                            <td>Date values (YYYY-MM-DD)</td>
+                            <td>'2023-10-15'</td>
+                            <td>3 bytes</td>
+                        </tr>
+                        <tr>
+                            <td>TIME</td>
+                            <td>Time values (HH:MM:SS)</td>
+                            <td>'14:30:00'</td>
+                            <td>3 bytes</td>
+                        </tr>
+                        <tr>
+                            <td>DATETIME</td>
+                            <td>Date and time combination</td>
+                            <td>'2023-10-15 14:30:00'</td>
+                            <td>8 bytes</td>
+                        </tr>
+                        <tr>
+                            <td>BOOLEAN</td>
+                            <td>True or false values</td>
+                            <td>TRUE, FALSE</td>
+                            <td>1 byte</td>
+                        </tr>
+                        <tr>
+                            <td>BLOB</td>
+                            <td>Binary Large Object (images, files)</td>
+                            <td>Image files, PDFs</td>
+                            <td>Up to 65KB</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-lightbulb"></i> Choosing Appropriate Data Types</h3>
+                <ul>
+                    <li>Use the smallest data type that can comfortably handle your data</li>
+                    <li>Choose CHAR when data values are consistently the same length</li>
+                    <li>Use VARCHAR when data values vary significantly in length</li>
+                    <li>Consider storage requirements and performance implications</li>
+                    <li>Use appropriate numeric types based on precision requirements</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Data Dictionary Section -->
+        <div class="content-section">
+            <div class="section-title">
+                <i class="fas fa-book"></i>
+                <h2>Data Dictionary</h2>
+            </div>
+            
+            <p>A data dictionary is a centralized repository of information about data such as meaning, relationships to other data, origin, usage, and format. It serves as a communication tool between developers, database administrators, and end users.</p>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-info-circle"></i> What a Data Dictionary Contains</h3>
+                <ul>
+                    <li>Names of all database tables and their purposes</li>
+                    <li>Details of each column: name, data type, size, and constraints</li>
+                    <li>Table relationships and foreign key constraints</li>
+                    <li>Index information for improving query performance</li>
+                    <li>View definitions and stored procedures</li>
+                    <li>User permissions and access rights</li>
+                    <li>Business rules and validation criteria</li>
+                    <li>Data ownership and stewardship information</li>
+                </ul>
+            </div>
+            
+            <div class="model-card-container">
+                <div class="model-card">
+                    <h3><i class="fas fa-check-circle"></i> Benefits</h3>
+                    <p>Improves communication between stakeholders</p>
+                    <p>Enhances data consistency and quality</p>
+                    <p>Facilitates database maintenance and evolution</p>
+                    <p>Provides documentation for system understanding</p>
+                    <p>Helps in impact analysis of changes</p>
+                </div>
+                
+                <div class="model-card">
+                    <h3><i class="fas fa-database"></i> Types of Data Dictionaries</h3>
+                    <p><strong>Active Data Dictionary:</strong> Automatically updated by the DBMS when changes occur</p>
+                    <p><strong>Passive Data Dictionary:</strong> Maintained separately from the database and updated manually</p>
+                    <p><strong>Integrated Data Dictionary:</strong> Part of the database management system itself</p>
+                </div>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-cogs"></i> Data Dictionary Example Structure</h3>
+                <p>A typical data dictionary entry for a "Students" table might include:</p>
+                <ul>
+                    <li><strong>Table Name:</strong> Students</li>
+                    <li><strong>Description:</strong> Contains information about registered students</li>
+                    <li><strong>Columns:</strong> 
+                        <ul>
+                            <li>StudentID: INT, Primary Key, Unique identifier for each student</li>
+                            <li>FirstName: VARCHAR(50), NOT NULL, Student's first name</li>
+                            <li>LastName: VARCHAR(50), NOT NULL, Student's last name</li>
+                            <li>Email: VARCHAR(100), UNIQUE, Student's email address</li>
+                            <li>EnrollmentDate: DATE, NOT NULL, Date when student enrolled</li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
         
@@ -797,6 +968,8 @@
                     <li>Enable concurrent access by multiple users without conflicts</li>
                     <li>Implement robust backup and recovery mechanisms</li>
                     <li>Maintain data independence between applications and physical storage</li>
+                    <li>Provide a user-friendly interface for database interaction</li>
+                    <li>Support multiple views of data for different user groups</li>
                 </ul>
             </div>
             
@@ -808,6 +981,8 @@
                     <p>Reduced data inconsistency with integrity constraints</p>
                     <p>Better decision making with accurate, timely information</p>
                     <p>Increased productivity through efficient data access</p>
+                    <p>Reduced application development time</p>
+                    <p>Enforced standards and compliance requirements</p>
                 </div>
                 
                 <div class="model-card">
@@ -817,6 +992,8 @@
                     <p>Performance overhead for complex operations</p>
                     <p>Vulnerability to system failures requiring recovery mechanisms</p>
                     <p>Requires specialized personnel for administration</p>
+                    <p>Potential for greater impact if system fails</p>
+                    <p>Conversion costs when migrating from old systems</p>
                 </div>
             </div>
         </div>
@@ -835,25 +1012,113 @@
                     <h3><i class="fas fa-sitemap"></i> Hierarchical Model</h3>
                     <p>Tree-like structure with parent-child relationships. Suitable for one-to-many relationships with strict hierarchies. Used in early mainframe database systems.</p>
                     <p><strong>Example:</strong> File systems, organization charts</p>
+                    <p><strong>Advantages:</strong> Simple structure, fast access for hierarchical data, efficient storage</p>
+                    <p><strong>Disadvantages:</strong> Inflexible structure, complex implementation for complex relationships, redundancy issues</p>
                 </div>
                 
                 <div class="model-card">
                     <h3><i class="fas fa-network-wired"></i> Network Model</h3>
                     <p>Complex interconnected records allowing multiple parent-child relationships. More flexible than hierarchical model but complex to manage.</p>
                     <p><strong>Example:</strong> Complex manufacturing systems</p>
+                    <p><strong>Advantages:</strong> Handles complex relationships, faster access through pointers, reduced redundancy</p>
+                    <p><strong>Disadvantages:</strong> Complex design and implementation, requires knowledge of structure, difficult to modify</p>
                 </div>
                 
                 <div class="model-card">
                     <h3><i class="fas fa-table"></i> Relational Model</h3>
                     <p>Data organized in tables (relations) with rows and columns. Uses keys to define relationships between tables. Most widely used model today.</p>
                     <p><strong>Example:</strong> SQL databases like MySQL, PostgreSQL</p>
+                    <p><strong>Advantages:</strong> Simple design, flexible queries, data independence, powerful SQL language</p>
+                    <p><strong>Disadvantages:</strong> Performance issues with complex joins, storage overhead for indexes</p>
                 </div>
                 
                 <div class="model-card">
                     <h3><i class="fas fa-shapes"></i> Entity-Relationship Model</h3>
                     <p>Conceptual representation using entities, attributes, and relationships. Serves as a blueprint for database design before implementation.</p>
                     <p><strong>Example:</strong> Database design diagrams</p>
+                    <p><strong>Advantages:</strong> Visual representation, easy to understand, good for communication</p>
+                    <p><strong>Disadvantages:</strong> Conceptual only, requires conversion to implementation model</p>
                 </div>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-plus-circle"></i> Additional Database Models</h3>
+                <ul>
+                    <li><strong>Object-Oriented Model:</strong> Stores data as objects with attributes and methods. Suitable for complex data structures.</li>
+                    <li><strong>Object-Relational Model:</strong> Combines relational and object-oriented features. Supports complex data types.</li>
+                    <li><strong>NoSQL Model:</strong> Non-tabular databases designed for specific data models and scalability needs.</li>
+                    <li><strong>Graph Model:</strong> Uses graph structures with nodes, edges, and properties. Ideal for interconnected data.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- ER Diagrams Section -->
+        <div class="content-section">
+            <div class="section-title">
+                <i class="fas fa-diagram-project"></i>
+                <h2>Entity-Relationship (ER) Diagrams</h2>
+            </div>
+            
+            <p>Entity-Relationship (ER) diagrams are visual representations of the logical structure of databases. They use standardized symbols to represent entities, their attributes, and the relationships between them.</p>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-shapes"></i> Components of ER Diagrams</h3>
+                <ul>
+                    <li><strong>Entities:</strong> Real-world objects or concepts (represented by rectangles)</li>
+                    <li><strong>Attributes:</strong> Properties or characteristics of entities (represented by ovals)</li>
+                    <li><strong>Relationships:</strong> Associations between entities (represented by diamonds)</li>
+                    <li><strong>Cardinality:</strong> Defines the numerical relationship between entities (1:1, 1:N, M:N)</li>
+                    <li><strong>Primary Keys:</strong> Unique identifiers for entities (underlined attributes)</li>
+                </ul>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-drafting-compass"></i> ER Diagram Notation Examples</h3>
+                <ul>
+                    <li><strong>Entity:</strong> Rectangle with entity name (e.g., Student, Course)</li>
+                    <li><strong>Attribute:</strong> Oval connected to its entity (e.g., StudentID, CourseName)</li>
+                    <li><strong>Relationship:</strong> Diamond connecting related entities (e.g., Enrolls, Teaches)</li>
+                    <li><strong>Primary Key:</strong> Underlined attribute name (e.g., <u>StudentID</u>)</li>
+                    <li><strong>Cardinality:</strong> 
+                        <ul>
+                            <li>1:1 - One to One (e.g., President:Country)</li>
+                            <li>1:N - One to Many (e.g., Department:Employees)</li>
+                            <li>M:N - Many to Many (e.g., Students:Courses)</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-sitemap"></i> Example ER Diagram: University Database</h3>
+                <p>Entities: Student, Course, Professor, Department</p>
+                <p>Relationships: 
+                    <ul>
+                        <li>Student ENROLLS_IN Course (M:N)</li>
+                        <li>Professor TEACHES Course (1:N)</li>
+                        <li>Department EMPLOYS Professor (1:N)</li>
+                        <li>Student MAJOR_IN Department (M:1)</li>
+                    </ul>
+                </p>
+                <p>Attributes: 
+                    <ul>
+                        <li>Student: <u>StudentID</u>, Name, Email, EnrollmentDate</li>
+                        <li>Course: <u>CourseID</u>, Title, Credits</li>
+                        <li>Professor: <u>ProfID</u>, Name, Office</li>
+                        <li>Department: <u>DeptID</u>, Name, Location</li>
+                    </ul>
+                </p>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-lightbulb"></i> Benefits of ER Diagrams</h3>
+                <ul>
+                    <li>Visual representation helps in understanding database structure</li>
+                    <li>Helps identify entities and their relationships early in design</li>
+                    <li>Serves as a blueprint for database implementation</li>
+                    <li>Facilitates communication between stakeholders</li>
+                    <li>Helps identify potential issues before implementation</li>
+                </ul>
             </div>
         </div>
         
@@ -873,12 +1138,57 @@
                     <li><strong>Entity Integrity:</strong> Requires that each table has a primary key that uniquely identifies each row</li>
                     <li><strong>Referential Integrity:</strong> Ensures foreign keys reference valid primary keys in related tables</li>
                     <li><strong>User-defined Integrity:</strong> Custom rules specific to business requirements</li>
+                    <li><strong>Key Constraints:</strong> Ensures uniqueness of primary and candidate keys</li>
                 </ul>
             </div>
             
             <div class="definition-box">
                 <h3><i class="fas fa-exclamation-circle"></i> Importance of Constraints</h3>
                 <p>Integrity constraints maintain data quality by preventing inconsistencies and anomalies. They enforce business rules at the database level, ensuring that relationships between data elements remain valid even when data is modified. Constraints also improve query performance by enabling the database optimizer to make better decisions.</p>
+            </div>
+            
+            <div class="table-container">
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Constraint Type</th>
+                            <th>SQL Syntax Example</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Primary Key</td>
+                            <td>PRIMARY KEY (StudentID)</td>
+                            <td>Ensures each record is uniquely identified</td>
+                        </tr>
+                        <tr>
+                            <td>Foreign Key</td>
+                            <td>FOREIGN KEY (DeptID) REFERENCES Departments(DeptID)</td>
+                            <td>Maintains referential integrity between tables</td>
+                        </tr>
+                        <tr>
+                            <td>Not Null</td>
+                            <td>Name VARCHAR(50) NOT NULL</td>
+                            <td>Ensures a column cannot have NULL values</td>
+                        </tr>
+                        <tr>
+                            <td>Unique</td>
+                            <td>Email VARCHAR(100) UNIQUE</td>
+                            <td>Ensures all values in a column are different</td>
+                        </tr>
+                        <tr>
+                            <td>Check</td>
+                            <td>Age INT CHECK (Age >= 18)</td>
+                            <td>Ensures values meet specific conditions</td>
+                        </tr>
+                        <tr>
+                            <td>Default</td>
+                            <td>CreatedDate DATE DEFAULT GETDATE()</td>
+                            <td>Provides a default value when none is specified</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         
@@ -896,19 +1206,47 @@
                     <h4>First Normal Form (1NF)</h4>
                     <p>Eliminate repeating groups and ensure atomic columns. Each table cell should contain a single value, and each record needs to be unique.</p>
                     <p><strong>Example:</strong> Separate phone numbers into multiple rows rather than comma-separated values.</p>
+                    <p><strong>Rules:</strong>
+                        <ul>
+                            <li>Each table cell should contain a single value</li>
+                            <li>Each record needs to be unique</li>
+                            <li>No repeating groups or arrays</li>
+                        </ul>
+                    </p>
                 </div>
                 
                 <div class="normalization-step">
                     <h4>Second Normal Form (2NF)</h4>
                     <p>Meet all 1NF requirements and eliminate partial dependencies. All non-key attributes must depend on the entire primary key.</p>
                     <p><strong>Example:</strong> Move product details to a separate table from orders.</p>
+                    <p><strong>Rules:</strong>
+                        <ul>
+                            <li>Must be in 1NF</li>
+                            <li>No partial dependency (non-key attribute should not depend on part of composite key)</li>
+                        </ul>
+                    </p>
                 </div>
                 
                 <div class="normalization-step">
                     <h4>Third Normal Form (3NF)</h4>
                     <p>Meet all 2NF requirements and eliminate transitive dependencies. Non-key attributes must depend only on the primary key.</p>
                     <p><strong>Example:</strong> Separate department location from employee table.</p>
+                    <p><strong>Rules:</strong>
+                        <ul>
+                            <li>Must be in 2NF</li>
+                            <li>No transitive dependency (non-key attribute should not depend on another non-key attribute)</li>
+                        </ul>
+                    </p>
                 </div>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-signal"></i> Higher Normal Forms</h3>
+                <ul>
+                    <li><strong>Boyce-Codd Normal Form (BCNF):</strong> Stronger version of 3NF where every determinant is a candidate key</li>
+                    <li><strong>Fourth Normal Form (4NF):</strong> Eliminates multi-valued dependencies</li>
+                    <li><strong>Fifth Normal Form (5NF):</strong> Deals with cases where information can be reconstructed from smaller pieces of information</li>
+                </ul>
             </div>
             
             <div class="model-card-container">
@@ -918,6 +1256,7 @@
                     <p>Improved data integrity and consistency</p>
                     <p>Simpler queries with well-defined relationships</p>
                     <p>Easier maintenance and modification of database structure</p>
+                    <p>Minimizes data anomalies during insert, update, and delete operations</p>
                 </div>
                 
                 <div class="model-card">
@@ -926,6 +1265,7 @@
                     <p>Potential for slower performance due to joins across tables</p>
                     <p>Harder to understand for beginners</p>
                     <p>May require more complex application logic</p>
+                    <p>Can lead to over-normalization if not carefully implemented</p>
                 </div>
             </div>
         </div>
@@ -982,6 +1322,76 @@
                     <li>Maintain regular backups and test restoration procedures</li>
                     <li>Use strong password policies and multi-factor authentication</li>
                     <li>Conduct regular security audits and vulnerability assessments</li>
+                    <li>Implement network security measures like firewalls</li>
+                    <li>Monitor database activities for suspicious behavior</li>
+                </ul>
+            </div>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-shield-alt"></i> Common Database Security Threats</h3>
+                <ul>
+                    <li><strong>SQL Injection:</strong> Malicious code injection through input fields</li>
+                    <li><strong>Unauthorized Access:</strong> Access by users without proper permissions</li>
+                    <li><strong>Data Breaches:</strong> Theft or exposure of sensitive information</li>
+                    <li><strong>Denial of Service (DoS):</strong> Attacks that make database resources unavailable</li>
+                    <li><strong>Malware:</strong> Software designed to disrupt or damage database systems</li>
+                    <li><strong>Insider Threats:</strong> Malicious actions by authorized users</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- DBA and Roles of DBA Section -->
+        <div class="content-section">
+            <div class="section-title">
+                <i class="fas fa-user-tie"></i>
+                <h2>Database Administrator (DBA)</h2>
+            </div>
+            
+            <p>A Database Administrator (DBA) is a specialized IT professional responsible for the installation, configuration, upgrade, administration, monitoring, maintenance, and security of databases in an organization.</p>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-tasks"></i> Roles and Responsibilities of DBA</h3>
+                <ul>
+                    <li><strong>Database Design:</strong> Planning and implementing database structures based on requirements</li>
+                    <li><strong>Installation and Configuration:</strong> Setting up database software and configuring it for optimal performance</li>
+                    <li><strong>Performance Tuning:</strong> Monitoring and optimizing database performance through indexing, query optimization, etc.</li>
+                    <li><strong>Backup and Recovery:</strong> Implementing and testing backup strategies to prevent data loss</li>
+                    <li><strong>Security Management:</strong> Implementing security measures and managing user access privileges</li>
+                    <li><strong>Troubleshooting:</strong> Identifying and resolving database issues and errors</li>
+                    <li><strong>Capacity Planning:</strong> Forecasting storage requirements and planning for future growth</li>
+                    <li><strong>Documentation:</strong> Maintaining documentation of database structures, procedures, and policies</li>
+                </ul>
+            </div>
+            
+            <div class="model-card-container">
+                <div class="model-card">
+                    <h3><i class="fas fa-cogs"></i> Technical Skills Required</h3>
+                    <p>Proficiency in SQL and database query languages</p>
+                    <p>Knowledge of database theory and design principles</p>
+                    <p>Understanding of operating systems and networking</p>
+                    <p>Experience with specific DBMS platforms (Oracle, SQL Server, MySQL, etc.)</p>
+                    <p>Knowledge of backup and recovery procedures</p>
+                    <p>Understanding of performance tuning techniques</p>
+                </div>
+                
+                <div class="model-card">
+                    <h3><i class="fas fa-users"></i> Types of DBAs</h3>
+                    <p><strong>System DBA:</strong> Focuses on technical aspects and database software</p>
+                    <p><strong>Application DBA:</strong> Supports database needs of specific applications</p>
+                    <p><strong>Database Architect:</strong> Designs database solutions and structures</p>
+                    <p><strong>Data Warehouse Administrator:</strong> Manages data warehouse environments</p>
+                    <p><strong>Cloud DBA:</strong> Manages databases in cloud environments</p>
+                </div>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-graduation-cap"></i> DBA Career Path</h3>
+                <ul>
+                    <li><strong>Junior DBA:</strong> Entry-level position with limited responsibilities</li>
+                    <li><strong>Mid-level DBA:</strong> Handles routine administration tasks independently</li>
+                    <li><strong>Senior DBA:</strong> Manages complex databases and mentors junior staff</li>
+                    <li><strong>Lead DBA/Manager:</strong> Oversees database team and strategic planning</li>
+                    <li><strong>Database Architect:</strong> Designs overall database solutions and strategies</li>
                 </ul>
             </div>
         </div>
@@ -1003,6 +1413,7 @@
                     <p>Modular growth allowing incremental expansion</p>
                     <p>Local autonomy for different departments/locations</p>
                     <p>Reduced communication costs for geographically dispersed organizations</p>
+                    <p>Better availability as failure of one site doesn't affect others</p>
                 </div>
                 
                 <div class="model-card">
@@ -1012,6 +1423,7 @@
                     <p>Security challenges across multiple locations</p>
                     <p>Integrity control issues with distributed transactions</p>
                     <p>Difficulties in maintaining data consistency</p>
+                    <p>Network dependency and potential bottlenecks</p>
                 </div>
             </div>
             
@@ -1021,7 +1433,165 @@
                     <li><strong>Client-Server:</strong> Clients interact with a central server that manages the distributed database</li>
                     <li><strong>Peer-to-Peer:</strong> All nodes are equal and can act as both clients and servers</li>
                     <li><strong>Multi-DBMS:</strong> Integrates multiple autonomous databases into a single federated system</li>
+                    <li><strong>Cloud-Based:</strong> Databases distributed across cloud infrastructure with elastic scaling</li>
                 </ul>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-network-wired"></i> Data Distribution Strategies</h3>
+                <ul>
+                    <li><strong>Fragmentation:</strong> Dividing database into fragments stored at different locations</li>
+                    <li><strong>Replication:</strong> Storing copies of data at multiple locations</li>
+                    <li><strong>Allocation:</strong> Determining where to place data fragments or replicas</li>
+                    <li><strong>Horizontal Partitioning:</strong> Distributing rows of a table across different locations</li>
+                    <li><strong>Vertical Partitioning:</strong> Distributing columns of a table across different locations</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- SQL Section -->
+        <div class="content-section">
+            <div class="section-title">
+                <i class="fas fa-code"></i>
+                <h2>Structured Query Language (SQL)</h2>
+            </div>
+            
+            <p>SQL (Structured Query Language) is a standard programming language specifically designed for managing data in relational database management systems. It provides commands for data definition, manipulation, and control.</p>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-cogs"></i> SQL Components</h3>
+                <ul>
+                    <li><strong>DDL (Data Definition Language):</strong> CREATE, ALTER, DROP, TRUNCATE - for defining database structure</li>
+                    <li><strong>DML (Data Manipulation Language):</strong> SELECT, INSERT, UPDATE, DELETE - for manipulating data</li>
+                    <li><strong>DCL (Data Control Language):</strong> GRANT, REVOKE - for access control</li>
+                    <li><strong>TCL (Transaction Control Language):</strong> COMMIT, ROLLBACK, SAVEPOINT - for transaction management</li>
+                    <li><strong>DQL (Data Query Language):</strong> SELECT - for querying data (sometimes considered part of DML)</li>
+                </ul>
+            </div>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-functions"></i> Common SQL Functions</h3>
+                <ul>
+                    <li><strong>Aggregate Functions:</strong> SUM(), COUNT(), AVG(), MAX(), MIN(), GROUP_CONCAT()</li>
+                    <li><strong>String Functions:</strong> CONCAT(), SUBSTRING(), LENGTH(), UPPER(), LOWER(), TRIM()</li>
+                    <li><strong>Date Functions:</strong> CURRENT_DATE(), NOW(), DATEADD(), DATEDIFF(), EXTRACT()</li>
+                    <li><strong>Mathematical Functions:</strong> ROUND(), ABS(), CEILING(), FLOOR(), POWER()</li>
+                    <li><strong>Conversion Functions:</strong> CAST(), CONVERT(), FORMAT()</li>
+                </ul>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-table"></i> SQL Data Types Categories</h3>
+                <ul>
+                    <li><strong>Numeric:</strong> INT, SMALLINT, BIGINT, FLOAT, REAL, DECIMAL, NUMERIC</li>
+                    <li><strong>Character/String:</strong> CHAR, VARCHAR, TEXT, NCHAR, NVARCHAR</li>
+                    <li><strong>Date/Time:</strong> DATE, TIME, DATETIME, TIMESTAMP, YEAR</li>
+                    <li><strong>Binary:</strong> BLOB, BINARY, VARBINARY</li>
+                    <li><strong>Other:</strong> BOOLEAN, JSON, XML, ARRAY (vendor-specific)</li>
+                </ul>
+            </div>
+            
+            <div class="sql-code">
+                <span class="sql-comment">-- Example: Creating a table with various constraints</span><br>
+                <span class="sql-keyword">CREATE TABLE</span> Employees (<br>
+                &nbsp;&nbsp;EmployeeID <span class="sql-keyword">INT PRIMARY KEY</span>,<br>
+                &nbsp;&nbsp;FirstName <span class="sql-keyword">VARCHAR</span>(50) <span class="sql-keyword">NOT NULL</span>,<br>
+                &nbsp;&nbsp;LastName <span class="sql-keyword">VARCHAR</span>(50) <span class="sql-keyword">NOT NULL</span>,<br>
+                &nbsp;&nbsp;Email <span class="sql-keyword">VARCHAR</span>(100) <span class="sql-keyword">UNIQUE</span>,<br>
+                &nbsp;&nbsp;BirthDate <span class="sql-keyword">DATE</span>,<br>
+                &nbsp;&nbsp;Salary <span class="sql-keyword">DECIMAL</span>(10,2) <span class="sql-keyword">CHECK</span> (Salary > 0),<br>
+                &nbsp;&nbsp;DepartmentID <span class="sql-keyword">INT</span>,<br>
+                &nbsp;&nbsp;<span class="sql-keyword">FOREIGN KEY</span> (DepartmentID) <span class="sql-keyword">REFERENCES</span> Departments(DepartmentID)<br>
+                );<br><br>
+                
+                <span class="sql-comment">-- Example: Complex query with JOIN and aggregation</span><br>
+                <span class="sql-keyword">SELECT</span> d.DepartmentName, <span class="sql-function">COUNT</span>(e.EmployeeID) AS EmployeeCount, <span class="sql-function">AVG</span>(e.Salary) AS AvgSalary<br>
+                <span class="sql-keyword">FROM</span> Departments d<br>
+                <span class="sql-keyword">LEFT JOIN</span> Employees e <span class="sql-keyword">ON</span> d.DepartmentID = e.DepartmentID<br>
+                <span class="sql-keyword">WHERE</span> d.Location = <span class="sql-string">'Kathmandu'</span><br>
+                <span class="sql-keyword">GROUP BY</span> d.DepartmentName<br>
+                <span class="sql-keyword">HAVING</span> <span class="sql-function">COUNT</span>(e.EmployeeID) > 5<br>
+                <span class="sql-keyword">ORDER BY</span> AvgSalary <span class="sql-keyword">DESC</span>;
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-lightbulb"></i> SQL Best Practices</h3>
+                <ul>
+                    <li>Use meaningful and consistent naming conventions</li>
+                    <li>Always specify column names in INSERT statements</li>
+                    <li>Use parameterized queries to prevent SQL injection</li>
+                    <li>Avoid using SELECT * in production code</li>
+                    <li>Use transactions for multiple related operations</li>
+                    <li>Create indexes on frequently queried columns</li>
+                    <li>Normalize database design but consider performance implications</li>
+                    <li>Comment complex queries for future maintenance</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Transaction Management Section -->
+        <div class="content-section">
+            <div class="section-title">
+                <i class="fas fa-exchange-alt"></i>
+                <h2>Transaction Management</h2>
+            </div>
+            
+            <p>A transaction is a single logical unit of work that accesses and possibly modifies the contents of a database. Transactions access data using read and write operations.</p>
+            
+            <div class="definition-box">
+                <h3><i class="fas fa-cube"></i> ACID Properties</h3>
+                <ul>
+                    <li><strong>Atomicity:</strong> Transactions are all-or-nothing - they either complete fully or have no effect at all</li>
+                    <li><strong>Consistency:</strong> Transactions bring the database from one valid state to another, preserving all invariants</li>
+                    <li><strong>Isolation:</strong> Concurrent transactions do not interfere with each other</li>
+                    <li><strong>Durability:</strong> Once a transaction is committed, its effects are permanent even in case of system failures</li>
+                </ul>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-sync"></i> Transaction States</h3>
+                <ul>
+                    <li><strong>Active:</strong> Initial state where transaction is executing</li>
+                    <li><strong>Partially Committed:</strong> After final operation executed but before commit</li>
+                    <li><strong>Committed:</strong> After successful completion and changes made permanent</li>
+                    <li><strong>Failed:</strong> When normal execution can no longer proceed</li>
+                    <li><strong>Aborted:</strong> After transaction has been rolled back and database restored</li>
+                    <li><strong>Terminated:</strong> Final state after transaction has either committed or aborted</li>
+                </ul>
+            </div>
+            
+            <div class="model-card-container">
+                <div class="model-card">
+                    <h3><i class="fas fa-code"></i> SQL Transaction Commands</h3>
+                    <p><strong>BEGIN TRANSACTION:</strong> Marks the start of a transaction</p>
+                    <p><strong>COMMIT:</strong> Saves all changes made during the transaction</p>
+                    <p><strong>ROLLBACK:</strong> Undoes all changes made during the transaction</p>
+                    <p><strong>SAVEPOINT:</strong> Sets a point within a transaction to which you can roll back</p>
+                    <p><strong>SET TRANSACTION:</strong> Configures properties of the transaction</p>
+                </div>
+                
+                <div class="model-card">
+                    <h3><i class="fas fa-users"></i> Concurrency Control</h3>
+                    <p><strong>Lock-Based Protocols:</strong> Control access to data items using locks</p>
+                    <p><strong>Timestamp-Based Protocols:</strong> Order transactions based on timestamps</p>
+                    <p><strong>Validation-Based Protocols:</strong> Validate transactions before commitment</p>
+                    <p><strong>Multiversion Concurrency Control (MVCC):</strong> Maintain multiple versions of data items</p>
+                </div>
+            </div>
+            
+            <div class="sql-code">
+                <span class="sql-comment">-- Example: Transaction with error handling</span><br>
+                <span class="sql-keyword">BEGIN TRANSACTION</span>;<br>
+                <span class="sql-keyword">BEGIN TRY</span><br>
+                &nbsp;&nbsp;<span class="sql-keyword">UPDATE</span> Accounts <span class="sql-keyword">SET</span> Balance = Balance - 100 <span class="sql-keyword">WHERE</span> AccountID = 123;<br>
+                &nbsp;&nbsp;<span class="sql-keyword">UPDATE</span> Accounts <span class="sql-keyword">SET</span> Balance = Balance + 100 <span class="sql-keyword">WHERE</span> AccountID = 456;<br>
+                &nbsp;&nbsp;<span class="sql-keyword">INSERT INTO</span> Transactions (FromAccount, ToAccount, Amount, Date) <span class="sql-keyword">VALUES</span> (123, 456, 100, <span class="sql-function">GETDATE</span>());<br>
+                &nbsp;&nbsp;<span class="sql-keyword">COMMIT TRANSACTION</span>;<br>
+                <span class="sql-keyword">END TRY</span><br>
+                <span class="sql-keyword">BEGIN CATCH</span><br>
+                &nbsp;&nbsp;<span class="sql-keyword">ROLLBACK TRANSACTION</span>;<br>
+                &nbsp;&nbsp;<span class="sql-keyword">THROW</span>;<br>
+                <span class="sql-keyword">END CATCH</span>;
             </div>
         </div>
     <!-- DBMS Questions & Answers -->
@@ -1046,6 +1616,8 @@
                         <li>Data Sharing and Concurrency: Supports simultaneous access</li>
                         <li>Backup and Recovery: Automated tools for data restoration</li>
                         <li>Data Independence: Applications insulated from storage changes</li>
+                        <li>Centralized Management: Single point of administration</li>
+                        <li>Improved Decision Making: Better data leads to better decisions</li>
                     </ul>
                 </div>
                 
@@ -1057,6 +1629,8 @@
                         <li>Performance Overhead: Resource-intensive operations</li>
                         <li>Scalability Limitations: Vertical scaling challenges</li>
                         <li>Single Point of Failure: Centralized databases risk downtime</li>
+                        <li>Migration Challenges: Difficult to switch between DBMS vendors</li>
+                        <li>Upgrade Complexity: Database upgrades can be disruptive</li>
                     </ul>
                 </div>
             </div>
@@ -1094,6 +1668,21 @@
                                 <td>Weak security (file-level permissions)</td>
                                 <td>Robust security (roles, encryption, access controls)</td>
                             </tr>
+                            <tr>
+                                <td>Data Integrity</td>
+                                <td>Difficult to maintain</td>
+                                <td>Enforced through constraints</td>
+                            </tr>
+                            <tr>
+                                <td>Backup & Recovery</td>
+                                <td>Manual and complex</td>
+                                <td>Automated and reliable</td>
+                            </tr>
+                            <tr>
+                                <td>Data Independence</td>
+                                <td>Low (programs depend on file structure)</td>
+                                <td>High (programs independent of storage)</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -1106,29 +1695,29 @@
                     <div class="model-card">
                         <h3><i class="fas fa-sitemap"></i> Hierarchical Model</h3>
                         <p><strong>Structure:</strong> Tree-like (parent-child relationships)</p>
-                        <p><strong>Advantages:</strong> Fast access for hierarchical data</p>
-                        <p><strong>Disadvantages:</strong> Inflexible; cannot model many-to-many relationships</p>
+                        <p><strong>Advantages:</strong> Fast access for hierarchical data, simple structure, efficient storage</p>
+                        <p><strong>Disadvantages:</strong> Inflexible; cannot model many-to-many relationships, complex implementation</p>
                     </div>
                     
                     <div class="model-card">
                         <h3><i class="fas fa-network-wired"></i> Network Model</h3>
                         <p><strong>Structure:</strong> Graph-like (multiple parent-child connections)</p>
-                        <p><strong>Advantages:</strong> Handles complex relationships</p>
-                        <p><strong>Disadvantages:</strong> High complexity in design and queries</p>
+                        <p><strong>Advantages:</strong> Handles complex relationships, faster access through pointers, reduced redundancy</p>
+                        <p><strong>Disadvantages:</strong> High complexity in design and queries, difficult to modify</p>
                     </div>
                     
                     <div class="model-card">
                         <h3><i class="fas fa-table"></i> Relational Model</h3>
                         <p><strong>Structure:</strong> Tables (rows and columns)</p>
-                        <p><strong>Advantages:</strong> Simple design, SQL support, flexible queries</p>
-                        <p><strong>Disadvantages:</strong> Performance issues with complex joins</p>
+                        <p><strong>Advantages:</strong> Simple design, SQL support, flexible queries, data independence</p>
+                        <p><strong>Disadvantages:</strong> Performance issues with complex joins, storage overhead for indexes</p>
                     </div>
                     
                     <div class="model-card">
                         <h3><i class="fas fa-shapes"></i> Object-Oriented Model</h3>
                         <p><strong>Structure:</strong> Objects (attributes and methods)</p>
-                        <p><strong>Advantages:</strong> Suitable for complex data (e.g., multimedia)</p>
-                        <p><strong>Disadvantages:</strong> Steep learning curve; limited adoption</p>
+                        <p><strong>Advantages:</strong> Suitable for complex data (e.g., multimedia), supports inheritance</p>
+                        <p><strong>Disadvantages:</strong> Steep learning curve; limited adoption, complex queries</p>
                     </div>
                 </div>
             </div>
@@ -1144,6 +1733,8 @@
                         <li><strong>vs. Hierarchical/Network:</strong> Uses logical links (keys) instead of physical pointers</li>
                         <li><strong>vs. Object-Oriented:</strong> Avoids complex inheritance; relies on tables</li>
                         <li><strong>vs. NoSQL:</strong> Requires fixed schema; strict ACID compliance</li>
+                        <li><strong>vs. Flat File:</strong> Supports relationships between data elements</li>
+                        <li><strong>vs. Graph Database:</strong> Uses tables instead of nodes and edges</li>
                     </ul>
                 </div>
             </div>
@@ -1159,6 +1750,8 @@
                         <li>Normalization: Splits tables to store data once</li>
                         <li>Foreign Keys: References unique IDs instead of repeating data</li>
                         <li>Centralized Storage: Single source of truth for critical data</li>
+                        <li>Data Integrity Constraints: Prevents inconsistent duplicate data</li>
+                        <li>Views: Allows virtual representation without storing duplicate data</li>
                     </ul>
                 </div>
             </div>
@@ -1201,6 +1794,21 @@
                                 <td>Limited vertical scalability</td>
                                 <td>Easier horizontal scalability</td>
                             </tr>
+                            <tr>
+                                <td>Cost</td>
+                                <td>Lower initial cost</td>
+                                <td>Higher infrastructure cost</td>
+                            </tr>
+                            <tr>
+                                <td>Data Consistency</td>
+                                <td>Easier to maintain</td>
+                                <td>Challenging to maintain</td>
+                            </tr>
+                            <tr>
+                                <td>Security</td>
+                                <td>Easier to secure</td>
+                                <td>More complex security requirements</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -1221,6 +1829,9 @@
                         <li>Enforcing data integrity and compliance standards</li>
                         <li>Managing user access and permissions</li>
                         <li>Database tuning and performance optimization</li>
+                        <li>Capacity planning and storage management</li>
+                        <li>Installing and upgrading database software</li>
+                        <li>Documenting database policies and procedures</li>
                     </ul>
                 </div>
             </div>
@@ -1235,18 +1846,21 @@
                         <h4>First Normal Form (1NF)</h4>
                         <p><strong>Rule:</strong> Each table cell should contain a single value, eliminate repeating groups</p>
                         <p><strong>Example:</strong> Convert Students (ID, Name, [Subject1, Subject2]) to Students (ID, Name, Subject)</p>
+                        <p><strong>Process:</strong> Ensure atomic values, remove repeating groups, define primary key</p>
                     </div>
                     
                     <div class="normalization-step">
                         <h4>Second Normal Form (2NF)</h4>
                         <p><strong>Rule:</strong> Must be in 1NF + no partial dependencies (all non-key attributes depend on entire primary key)</p>
                         <p><strong>Example:</strong> Split Orders (OrderID, ProductID, ProductName, Price) into Orders (OrderID, ProductID) and Products (ProductID, ProductName, Price)</p>
+                        <p><strong>Process:</strong> Remove partial dependencies by creating new tables for attributes that depend on part of key</p>
                     </div>
                     
                     <div class="normalization-step">
                         <h4>Third Normal Form (3NF)</h4>
                         <p><strong>Rule:</strong> Must be in 2NF + no transitive dependencies (non-key attributes depend only on primary key)</p>
                         <p><strong>Example:</strong> Split Employees (EmpID, Name, Dept, DeptLocation) into Employees (EmpID, Name, Dept) and Departments (Dept, DeptLocation)</p>
+                        <p><strong>Process:</strong> Remove transitive dependencies by moving attributes that depend on other non-key attributes to separate tables</p>
                     </div>
                 </div>
             </div>
@@ -1258,20 +1872,34 @@
                     <div class="model-card">
                         <h3><i class="fas fa-key"></i> Primary Key</h3>
                         <p>A unique identifier for each record in a table (e.g., StudentID in Students table)</p>
+                        <p><strong>Characteristics:</strong> Unique, NOT NULL, immutable, minimal</p>
                         <p><strong>Example:</strong> In an Employees table: EmployeeID</p>
                     </div>
                     
                     <div class="model-card">
                         <h3><i class="fas fa-key"></i> Foreign Key</h3>
                         <p>Attribute that links to the primary key in another table (e.g., DeptID in Employees referencing Departments table)</p>
+                        <p><strong>Characteristics:</strong> References primary key, can be NULL, maintains referential integrity</p>
                         <p><strong>Example:</strong> In Orders table: CustomerID referencing Customers table</p>
                     </div>
                     
                     <div class="model-card">
                         <h3><i class="fas fa-key"></i> Candidate Key</h3>
                         <p>Column(s) eligible to be a primary key (e.g., Email or SSN in Users table)</p>
+                        <p><strong>Characteristics:</strong> Unique, NOT NULL, minimal</p>
                         <p><strong>Example:</strong> In Products table: both ProductID and ProductCode could be candidate keys</p>
                     </div>
+                </div>
+                
+                <div class="key-points">
+                    <h3><i class="fas fa-key"></i> Other Types of Keys</h3>
+                    <ul>
+                        <li><strong>Super Key:</strong> A set of attributes that uniquely identify a record (may contain extra attributes)</li>
+                        <li><strong>Alternate Key:</strong> Candidate keys not chosen as primary key</li>
+                        <li><strong>Composite Key:</strong> A primary key consisting of multiple columns</li>
+                        <li><strong>Surrogate Key:</strong> An artificial key added to table (e.g., auto-increment ID)</li>
+                        <li><strong>Natural Key:</strong> A key that exists in the real world (e.g., SSN, ISBN)</li>
+                    </ul>
                 </div>
             </div>
             
@@ -1283,20 +1911,22 @@
                 <div class="key-points">
                     <h3><i class="fas fa-cogs"></i> SQL Components</h3>
                     <ul>
-                        <li><strong>DDL (Data Definition Language):</strong> CREATE, ALTER, DROP - for defining database structure</li>
-                        <li><strong>DML (Data Manipulation Language):</strong> SELECT, INSERT, UPDATE, DELETE - for manipulating data</li>
+                        <li><strong>DDL (Data Definition Language):</strong> CREATE, ALTER, DROP, TRUNCATE, RENAME - for defining database structure</li>
+                        <li><strong>DML (Data Manipulation Language):</strong> SELECT, INSERT, UPDATE, DELETE, MERGE - for manipulating data</li>
                         <li><strong>DCL (Data Control Language):</strong> GRANT, REVOKE - for access control</li>
-                        <li><strong>TCL (Transaction Control Language):</strong> COMMIT, ROLLBACK - for transaction management</li>
+                        <li><strong>TCL (Transaction Control Language):</strong> COMMIT, ROLLBACK, SAVEPOINT - for transaction management</li>
                     </ul>
                 </div>
                 
                 <div class="key-points">
                     <h3><i class="fas fa-functions"></i> Common SQL Functions</h3>
                     <ul>
-                        <li><strong>Aggregate Functions:</strong> SUM(), COUNT(), AVG(), MAX(), MIN()</li>
-                        <li><strong>String Functions:</strong> CONCAT(), SUBSTRING(), LENGTH(), UPPER(), LOWER()</li>
-                        <li><strong>Date Functions:</strong> CURRENT_DATE(), NOW(), DATEADD(), DATEDIFF()</li>
-                        <li><strong>Mathematical Functions:</strong> ROUND(), ABS(), CEILING(), FLOOR()</li>
+                        <li><strong>Aggregate Functions:</strong> SUM(), COUNT(), AVG(), MAX(), MIN(), GROUP_CONCAT()</li>
+                        <li><strong>String Functions:</strong> CONCAT(), SUBSTRING(), LENGTH(), UPPER(), LOWER(), TRIM(), REPLACE()</li>
+                        <li><strong>Date Functions:</strong> CURRENT_DATE(), NOW(), DATEADD(), DATEDIFF(), EXTRACT(), DATEPART()</li>
+                        <li><strong>Mathematical Functions:</strong> ROUND(), ABS(), CEILING(), FLOOR(), POWER(), SQRT()</li>
+                        <li><strong>Conversion Functions:</strong> CAST(), CONVERT(), FORMAT(), PARSE()</li>
+                        <li><strong>Window Functions:</strong> ROW_NUMBER(), RANK(), DENSE_RANK(), NTILE() (for advanced analytics)</li>
                     </ul>
                 </div>
             </div>
@@ -1310,7 +1940,7 @@
                     &nbsp;&nbsp;Id <span class="sql-keyword">INT PRIMARY KEY</span>,<br>
                     &nbsp;&nbsp;Name <span class="sql-keyword">VARCHAR</span>(50) <span class="sql-keyword">NOT NULL</span>,<br>
                     &nbsp;&nbsp;Class <span class="sql-keyword">CHAR</span>(3),<br>
-                    &nbsp;&nbsp;Marks <span class="sql-keyword">INT CHECK</span> (Marks >= 0)<br>
+                    &nbsp;&nbsp;Marks <span class="sql-keyword">INT CHECK</span> (Marks >= 0 <span class="sql-keyword">AND</span> Marks <= 100)<br>
                     );<br><br>
                     
                     <span class="sql-comment">-- b. Insert records into the students table with appropriate values</span><br>
@@ -1330,7 +1960,16 @@
                     
                     <span class="sql-comment">-- e. Delete the record of the student with id = 3</span><br>
                     <span class="sql-keyword">DELETE FROM</span> students <br>
-                    <span class="sql-keyword">WHERE</span> Id = 3;
+                    <span class="sql-keyword">WHERE</span> Id = 3;<br><br>
+                    
+                    <span class="sql-comment">-- f. Add a new column 'Address' to the students table</span><br>
+                    <span class="sql-keyword">ALTER TABLE</span> students <br>
+                    <span class="sql-keyword">ADD</span> Address <span class="sql-keyword">VARCHAR</span>(100);<br><br>
+                    
+                    <span class="sql-comment">-- g. Display names and marks of students who scored more than 80</span><br>
+                    <span class="sql-keyword">SELECT</span> Name, Marks <span class="sql-keyword">FROM</span> students <br>
+                    <span class="sql-keyword">WHERE</span> Marks > 80 <br>
+                    <span class="sql-keyword">ORDER BY</span> Marks <span class="sql-keyword">DESC</span>;
                 </div>
             </div>
             
@@ -1339,15 +1978,18 @@
                 <h3><i class="fas fa-book"></i> 12. Define the following terms.</h3>
                 <div class="key-points">
                     <ul>
-                        <li><strong>a. Data Dictionary:</strong> Centralized repository of information about data such as meaning, relationships, origin, usage, and format</li>
-                        <li><strong>b. Primary Key:</strong> Unique identifier for each record in a database table (e.g., ISBN in Books table)</li>
-                        <li><strong>c. Relationship:</strong> Association between entities/tables (one-to-one, one-to-many, many-to-many)</li>
-                        <li><strong>d. Data Manipulation Language (DML):</strong> SQL commands for data operations (SELECT, INSERT, UPDATE, DELETE)</li>
-                        <li><strong>e. Structured Query Language (SQL):</strong> Standard language for relational database management</li>
-                        <li><strong>f. Data Integrity:</strong> Accuracy and consistency of data throughout its lifecycle</li>
-                        <li><strong>g. Data Definition Language (DDL):</strong> SQL commands for defining database schema (CREATE, ALTER, DROP)</li>
-                        <li><strong>h. Data Security:</strong> Protective measures to prevent unauthorized access to databases</li>
-                        <li><strong>i. Database System:</strong> Complete system for database management including DBMS, database, and applications</li>
+                        <li><strong>a. Data Dictionary:</strong> Centralized repository of information about data such as meaning, relationships, origin, usage, and format. Also known as system catalog.</li>
+                        <li><strong>b. Primary Key:</strong> Unique identifier for each record in a database table (e.g., ISBN in Books table). Must be unique and not null.</li>
+                        <li><strong>c. Relationship:</strong> Association between entities/tables (one-to-one, one-to-many, many-to-many). Represented in ER diagrams.</li>
+                        <li><strong>d. Data Manipulation Language (DML):</strong> SQL commands for data operations (SELECT, INSERT, UPDATE, DELETE, MERGE).</li>
+                        <li><strong>e. Structured Query Language (SQL):</strong> Standard language for relational database management and manipulation.</li>
+                        <li><strong>f. Data Integrity:</strong> Accuracy and consistency of data throughout its lifecycle. Maintained through constraints.</li>
+                        <li><strong>g. Data Definition Language (DDL):</strong> SQL commands for defining database schema (CREATE, ALTER, DROP, TRUNCATE, RENAME).</li>
+                        <li><strong>h. Data Security:</strong> Protective measures to prevent unauthorized access to databases. Includes authentication, authorization, encryption.</li>
+                        <li><strong>i. Database System:</strong> Complete system for database management including DBMS, database, and applications.</li>
+                        <li><strong>j. Transaction:</strong> A single logical unit of work that accesses and possibly modifies the contents of a database.</li>
+                        <li><strong>k. Normalization:</strong> Process of organizing data to minimize redundancy and improve data integrity.</li>
+                        <li><strong>l. Entity-Relationship Model:</strong> Conceptual representation of data using entities, attributes, and relationships.</li>
                     </ul>
                 </div>
             </div>
@@ -1385,6 +2027,7 @@
                     <li><a href="#">Sample Questions</a></li>
                     <li><a href="#">Reference Materials</a></li>
                     <li><a href="#">Exam Preparation</a></li>
+                    <li><a href="#">SQL Practice</a></li>
                 </ul>
             </div>
             
@@ -1449,8 +2092,9 @@
                 const code = codeElement.innerHTML;
                 const highlightedCode = code
                     .replace(/(--.*)/g, '<span class="sql-comment">$1</span>')
-                    .replace(/\b(CREATE|TABLE|INT|PRIMARY|KEY|VARCHAR|NOT|NULL|CHAR|CHECK|INSERT|INTO|VALUES|SELECT|FROM|UPDATE|SET|WHERE|DELETE)\b/g, '<span class="sql-keyword">$1</span>')
-                    .replace(/\b(SUM|COUNT|AVG|CONCAT|SUBSTRING|CURRENT_DATE|DATEDIFF)\b/g, '<span class="sql-function">$1</span>');
+                    .replace(/\b(CREATE|TABLE|INT|PRIMARY|KEY|VARCHAR|NOT|NULL|CHAR|CHECK|INSERT|INTO|VALUES|SELECT|FROM|UPDATE|SET|WHERE|DELETE|ALTER|ADD|ORDER|BY|DESC|ASC|BEGIN|COMMIT|ROLLBACK|TRANSACTION|TRY|CATCH|THROW|FUNCTION|PROCEDURE|TRIGGER|VIEW|INDEX|UNIQUE|FOREIGN|REFERENCES|DEFAULT|CONSTRAINT|AND|OR|NOT|IN|BETWEEN|LIKE|EXISTS|CASE|WHEN|THEN|ELSE|END|JOIN|INNER|LEFT|RIGHT|FULL|OUTER|ON|GROUP|BY|HAVING|DISTINCT|TOP|LIMIT|OFFSET|UNION|ALL|ANY|SOME|CAST|CONVERT|AS|IS|NULL)\b/gi, '<span class="sql-keyword">$1</span>')
+                    .replace(/\b(SUM|COUNT|AVG|MAX|MIN|CONCAT|SUBSTRING|LENGTH|UPPER|LOWER|TRIM|REPLACE|CURRENT_DATE|NOW|DATEADD|DATEDIFF|EXTRACT|DATEPART|ROUND|ABS|CEILING|FLOOR|POWER|SQRT|CAST|CONVERT|FORMAT|PARSE|ROW_NUMBER|RANK|DENSE_RANK|NTILE)\b/gi, '<span class="sql-function">$1</span>')
+                    .replace(/'([^']*)'/g, '<span class="sql-string">\'$1\'</span>');
                 codeElement.innerHTML = highlightedCode;
             });
         });
